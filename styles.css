@@ -1,0 +1,160 @@
+/* ARGUS — Identidad "The Watcher" — Obsidiana & Latón */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Archivo:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root{
+  --argus-obsidiana:#0C0E10;
+  --argus-grafito:#14171A;
+  --argus-grafito-2:#191D21;
+  --argus-laton:#C2924F;
+  --argus-laton-apagado:#8F6C3B;
+  --argus-hueso:#E8E4DC;
+  --argus-gris-medio:#8B9299;
+  --argus-gris-tenue:#5A5F66;
+  --argus-alerta:#C0603E;
+  --line:rgba(232,228,220,.12);
+  --line-soft:rgba(232,228,220,.06);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--argus-obsidiana);
+  color:var(--argus-hueso);
+  font-family:'Archivo',sans-serif;
+  font-weight:300;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:inherit;}
+
+.kicker{
+  font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.28em;
+  font-size:11px;
+  color:var(--argus-laton);
+}
+
+.mono-label{
+  font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:11px;
+  color:var(--argus-gris-tenue);
+}
+
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  letter-spacing:-.02em;
+  line-height:1.05;
+  margin:0;
+}
+
+.wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  letter-spacing:.34em;
+  text-transform:uppercase;
+}
+
+/* retícula tenue de fondo */
+.reticula{
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size:64px 64px;
+  pointer-events:none;
+  z-index:0;
+}
+
+header{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:28px 6vw;
+  border-bottom:1px solid var(--line);
+}
+
+.brand{display:flex;align-items:center;gap:14px;}
+
+nav a{
+  font-family:'JetBrains Mono',monospace;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:11px;
+  color:var(--argus-gris-medio);
+  text-decoration:none;
+  margin-left:28px;
+  transition:color .3s cubic-bezier(.19,1,.22,1);
+}
+nav a:hover{color:var(--argus-laton);}
+
+main{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 6vw;}
+
+.hero{padding:14vh 0 12vh;}
+.hero h1{font-size:clamp(36px,6vw,64px);color:var(--argus-hueso);margin-top:18px;}
+.hero .bajada{
+  max-width:52ch;
+  margin-top:22px;
+  color:var(--argus-gris-medio);
+  font-size:17px;
+}
+
+.signal{
+  width:100%;
+  height:1px;
+  background:var(--argus-laton-apagado);
+  opacity:.5;
+  margin:6vh 0;
+}
+
+.grid-two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  padding:8vh 0;
+  border-top:1px solid var(--line);
+}
+@media (max-width:720px){.grid-two{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--argus-grafito);
+  border:1px solid var(--line);
+  padding:32px;
+  border-radius:2px;
+  transition:border-color .3s cubic-bezier(.19,1,.22,1);
+}
+.card:hover{border-color:var(--argus-laton-apagado);}
+.card h3{font-size:22px;color:var(--argus-hueso);margin-bottom:14px;}
+.card p{color:var(--argus-gris-medio);font-size:15px;margin:0;}
+
+footer{
+  position:relative;
+  z-index:1;
+  border-top:1px solid var(--line);
+  padding:40px 6vw 60px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  justify-content:space-between;
+  align-items:flex-end;
+}
+footer .mono-label{color:var(--argus-gris-tenue);}
+footer a{text-decoration:none;}
+footer a:hover{color:var(--argus-laton);}
+
+.legal main{max-width:760px;padding-top:10vh;padding-bottom:14vh;}
+.legal h2{font-size:clamp(28px,4vw,40px);color:var(--argus-hueso);margin-bottom:8px;}
+.legal .fecha{margin-bottom:6vh;}
+.legal h3{font-family:'Archivo',sans-serif;font-weight:500;font-size:16px;color:var(--argus-hueso);letter-spacing:.01em;margin:3.2em 0 .8em;}
+.legal p, .legal li{color:var(--argus-gris-medio);font-size:15.5px;}
+.legal ul{padding-left:1.2em;}
+.legal a.inline{color:var(--argus-laton);text-decoration:none;border-bottom:1px solid var(--argus-laton-apagado);}
+.legal strong{color:var(--argus-hueso);font-weight:500;}
