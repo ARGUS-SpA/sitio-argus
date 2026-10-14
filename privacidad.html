@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-CL">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +8,15 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="legal">
-<div class="reticula"></div>
+<div class="bg-grid" aria-hidden="true"></div>
 
-<header>
-  <div class="brand">
-    <a href="/" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
-      <svg width="28" height="28" viewBox="0 0 44 44" fill="none">
-        <path d="M4 22a18 18 0 0 1 36 0" stroke="#C2924F" stroke-width="1.6"/>
-        <path d="M40 22a18 18 0 0 1-36 0" stroke="#8B9299" stroke-width="1.6" stroke-dasharray="1.8 6"/>
-        <circle cx="22" cy="22" r="2.8" fill="#C2924F"/>
-      </svg>
-      <span class="wordmark" style="font-size:18px;color:var(--argus-hueso);">ARGUS</span>
-    </a>
+<nav class="top">
+  <a class="brand" href="/" aria-label="ARGUS — inicio"><svg class="mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M4 22a18 18 0 0 1 36 0" stroke="#C2924F" stroke-width="1.4"/><path d="M40 22a18 18 0 0 1-36 0" stroke="#5A5F66" stroke-width="1.4" stroke-dasharray="2 5"/><circle cx="22" cy="22" r="3" fill="#C2924F"/></svg><span class="wordmark">ARGUS</span></a>
+  <div class="nav-r">
+    <a href="/privacidad.html" aria-current="page">Privacidad</a><a href="/terminos.html">Condiciones</a><a href="/eliminacion-datos.html">Eliminación de datos</a><a href="mailto:admin@argus.cl">Contacto</a>
+    <a class="badge" href="/">← Volver al <b>inicio</b></a>
   </div>
-  <nav>
-    <a href="/privacidad.html">Privacidad</a>
-    <a href="/terminos.html">Condiciones</a>
-    <a href="/eliminacion-datos.html">Eliminación de datos</a>
-  </nav>
-</header>
+</nav>
 
 <main>
   <div class="kicker">DOCUMENTO LEGAL</div>
@@ -63,16 +53,16 @@
   <p>Versión 10 de octubre de 2026, actualización con antecedentes societarios y etapa de desarrollo. Se informan cambios materiales. Una nueva finalidad o destinatario no se legitima por modificar esta página. Contacto: <a class="inline" href="mailto:admin@argus.cl">admin@argus.cl</a>.</p>
 </main>
 
-<footer>
-  <div>
-    <div class="mono-label">ARGUS SpA</div>
-    <div class="mono-label" style="margin-top:6px;">MORANDÉ 835, PISO 5, OF. 518 — SANTIAGO, CHILE</div>
-  </div>
-  <div style="display:flex;gap:24px;flex-wrap:wrap;">
-    <a class="mono-label" href="/terminos.html">CONDICIONES</a>
-    <a class="mono-label" href="/eliminacion-datos.html">ELIMINACIÓN DE DATOS</a>
-    <a class="mono-label" href="/licencias/">LICENCIAS</a>
-    <a class="mono-label" href="mailto:admin@argus.cl">ADMIN@ARGUS.CL</a>
+<footer class="legal-foot">
+  <div class="f-row">
+    <div><div><b>ARGUS SpA</b> — Nada fuera de vista</div><div class="addr">Morandé 835, piso 5, of. 518 — Santiago, Chile</div></div>
+    <div class="f-links">
+      <a href="/privacidad.html" aria-current="page">Privacidad</a>
+      <a href="/terminos.html">Condiciones</a>
+      <a href="/eliminacion-datos.html">Eliminación de datos</a>
+      <a href="/licencias/">Licencias</a>
+      <a href="mailto:admin@argus.cl">admin@argus.cl</a>
+    </div>
   </div>
 </footer>
 
