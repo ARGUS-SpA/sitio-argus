@@ -27,3 +27,5 @@ Ejecutar `python check_site.py` y los comandos Node del README después de cambi
 ## Resultado de producción
 
 Consultar ESTADO-PUBLICACION.md para la evidencia del commit integrado, el alojamiento y el dominio público. Mantenerlo actualizado sin marcar como completada una comprobación no realizada.
+
+Antes de integrar se normalizaron los saltos de línea de los textos legales para conservar encabezados y párrafos como elementos separados. La política de privacidad se revisó visualmente con sus ocho apartados.
