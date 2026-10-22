@@ -1,0 +1,11 @@
+docs/
+scripts/
+README.md
+DECISIONES.md
+CONTINUIDAD.md
+PUBLICACION.md
+VALIDACION.md
+ESTADO-PUBLICACION.md
+check_site.py
+documentacion/
+*.zip
