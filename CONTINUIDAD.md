@@ -26,9 +26,11 @@ El acceso al repositorio privado `ARGUS-SpA/Plataforma-Digital-Ventas` no estuvo
 
 ## P1 · Seguimiento comercial / LYNX
 
-Definir un registro sencillo con empresa, contacto, origen, necesidad, volumen estimado, etapa, responsable y próxima acción. Comenzar con el proceso y evaluar su incorporación a LYNX; no se modificó esa plataforma.
+Preparados PROCESO-COMERCIAL.md, la plantilla vacía ARGUS-registro-comercial.xlsx y la especificación LYNX-COMERCIAL.md. La plantilla tiene 200 filas, filtros, responsables y alertas visuales. No contiene prospectos reales, no envía avisos y no está conectada a LYNX.
 
-Etapas sugeridas: nuevo interesado → demo → levantamiento → propuesta → contrato → implementación → entregado / descartado.
+Siguiente acción de los socios: guardar una copia única en una ubicación privada compartida, asignar responsable por oportunidad y registrar próxima acción y fecha. Confirmar la cadencia interna sugerida. Nunca subir la copia con contactos reales al repositorio público.
+
+Pendiente de desarrollo: revisar arquitectura y acceso de LYNX para implementar oportunidades, actividades, historial de etapas y futura medición de clics. No se modificó esa plataforma.
 
 ## P2 · Contenido con evidencia
 
