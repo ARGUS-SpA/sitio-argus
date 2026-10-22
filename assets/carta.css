@@ -113,3 +113,4 @@ input,textarea,select{background:var(--bg);color:var(--tx);border:1px solid var(
  .legal-copy{padding-block:32px}.legal-copy h1{margin-bottom:24px}.legal-copy h2{margin-top:28px}.legal-copy p{font-size:14px;line-height:1.65}
 }
 @media(max-width:680px){.demo-page .phone{height:auto}.demo-page .phone .screen{height:440px;border-radius:2px}.demo-page section.blk{padding-block:24px 36px}.demo-page .blk .wrap{padding-inline:0}}
+.masthead .brand,.demo-page .masthead .brand{display:inline-flex;align-items:center;gap:13px}@media(max-width:680px){.masthead .brand,.demo-page .masthead .brand{gap:10px}}
