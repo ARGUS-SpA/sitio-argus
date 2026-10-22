@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /documentacion/
+Sitemap: https://www.argus.cl/sitemap.xml
