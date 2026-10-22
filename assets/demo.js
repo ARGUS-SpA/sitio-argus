@@ -62,7 +62,7 @@ function argusScripts(fire){
  remind:[{day:'Ejemplo · recordatorio autorizado'},{who:'a',text:'Tiene un recordatorio de una cita. Revise el detalle en el enlace protegido de su centro. [Enlace de demostración] ¿Confirma su asistencia?'},{who:'p',text:'Sí, confirmo.'},{who:'a',text:'Asistencia confirmada. Gracias.',after:ev('confirm')},{who:'sys',text:'Confirmación registrada · sin datos clínicos en el mensaje'}],
  cancel:[{day:'Ejemplo · cancelación'},{who:'p',text:'Necesito cancelar mi reserva de hoy.'},{who:'a',text:'La reserva de ejemplo fue identificada mediante la verificación configurada. ¿Confirma que desea cancelarla?'},{who:'p',text:'Sí, cancelar.'},{who:'a',text:'Su reserva quedó cancelada. Podemos buscar otro horario si lo desea.',after:ev('cancel')},{who:'sys',text:'Cupo liberado → lista de espera'}],
  wait:[{day:'Ejemplo · lista de espera'},{fn:ev('notify')},{who:'a',text:'Hay un horario disponible para su solicitud en lista de espera. Consulte el detalle en el enlace protegido. [Enlace de demostración] ¿Desea reservarlo?'},{who:'p',text:'Sí, deseo reservarlo.'},{who:'a',text:'Reserva confirmada. Puede revisar el detalle en el canal protegido de su centro.',after:ev('fill')},{who:'sys',text:'Cupo reservado desde la lista de espera'}],
- urgent:[{day:'Ejemplo · fuera del horario del centro'},{who:'p',t:'21:20',text:'Necesito hablar con una persona.'},{who:'a',t:'21:20',text:'Dejé su solicitud para el equipo de la clínica. En este momento está fuera de su horario de atención humana y queda pendiente de revisión. Este asistente solo realiza gestiones administrativas; no atiende urgencias.',after:ev('urgent')},{who:'sys',cls:'al',text:'Derivación pendiente · sin respuesta humana inmediata'}]
+ urgent:[{day:'Ejemplo · fuera del horario del centro'},{who:'p',t:'21:20',text:'Necesito hablar con una persona.'},{who:'a',t:'21:20',text:'Dejé su solicitud para el equipo de la clínica. En este momento está fuera de su horario de atención humana y queda pendiente de revisión. Este asistente solo realiza gestiones administrativas; no atiende urgencias.',after:ev('urgent')},{who:'sys',cls:'al',text:'Pasó al equipo · pendiente · sin respuesta humana inmediata'}]
  };
 }
 
@@ -73,7 +73,7 @@ var ARGUS_SCN = [
   {k:'remind', label:'Recordatorio',    clock:'10:30', view:'agenda',  needs:['book']},
   {k:'cancel', label:'Cancelación',     clock:'08:02', view:'agenda'},
   {k:'wait',   label:'Lista de espera', clock:'08:04', view:'espera',  needs:['cancel']},
-  {k:'urgent', label:'Derivación humana',        clock:'21:20', view:'conv'}
+  {k:'urgent', label:'Pasó al equipo',        clock:'21:20', view:'conv'}
 ].filter(function(s){ return ARGUS_V2 || !s.web; });
 var ARGUS_EVS = {web:['web'], book:['book'], remind:['confirm'], cancel:['cancel'], wait:['notify','fill'], urgent:['urgent']};
 
@@ -151,7 +151,7 @@ var Admin = (function(){
     mendez: {name:'Dra. Paula Méndez', short:'Dra. Méndez', spec:'Ortodoncia', ini:'PM', hours:'Lun–Vie · 09:00–18:00 · Sáb 09:00–13:00', block:'Sin bloqueos esta semana'},
     vera:   {name:'Dr. Felipe Vera', short:'Dr. Vera', spec:'Endodoncia', ini:'FV', hours:'Lun–Vie · 09:00–17:00', block:'Mar 13 · 09:00–11:00 · Trámite'}
   };
-  var COLORS = {rojas:'rgba(232,228,220,.45)', mendez:'#8B9299', vera:'#8F6C3B'};
+  var COLORS = {rojas:'var(--c1)', mendez:'var(--c2)', vera:'var(--c3)'};
 
   function initial(){
     return {
@@ -267,10 +267,10 @@ var Admin = (function(){
       return {k:'Cupo recuperado', m:'Marcela Fuentes tomó la hora de las 14:00', view:'espera'};
     },
     urgent: function(){
-      S.convos.unshift({id:'cur', n:'Jorge Lillo', ch:'WhatsApp', t:'Mié 14 21:20', pre:'Derivada a recepción', flag:true, fresh:true, steps:['Recibió una solicitud de atención humana','Informó el alcance administrativo del asistente','Registró la derivación para el equipo del centro','Informó que el centro estaba fuera de horario humano']});
+      S.convos.unshift({id:'cur', n:'Jorge Lillo', ch:'WhatsApp', t:'Mié 14 21:20', pre:'Pasó al equipo a recepción', flag:true, fresh:true, steps:['Recibió una solicitud de atención humana','Informó el alcance administrativo del asistente','Registró la derivación para el equipo del centro','Informó que el centro estaba fuera de horario humano']});
       S.convSel = 'cur';
       feed('21:20', 'Solicitud derivada a recepción · <b>J. Lillo</b>', true);
-      return {k:'Derivación humana · requiere atención', m:'J. Lillo fue derivado a recepción', view:'conv', al:true};
+      return {k:'Pasó al equipo · requiere atención', m:'J. Lillo fue derivado a recepción', view:'conv', al:true};
     },
     web: function(){
       S.appts.push({id:'il', d:5, s:'10:00', m:45, p:'mendez', n:'Lagos', tag:'Sitio web', ag:true});
@@ -291,12 +291,12 @@ var Admin = (function(){
     inicio: function(){
       var b = BARS.slice(); b[13] = (S.done.book?1:0) + (S.done.fill?1:0) + (S.done.web?1:0) + 2;
       var mx = Math.max.apply(null, b);
-      var bars = b.map(function(v, i){ return '<div class="bar' + (i === 13 ? ' hl' : '') + '" data-v="' + v + '" data-h="' + Math.round(v / mx * 100) + '"></div>'; }).join('');
+      var bars = b.map(function(v, i){ return '<div class="bar' + (i === 13 ? ' hl' : '') + '" tabindex="0" role="img" aria-label="Día ' + (i+1) + ': ' + v + ' citas" data-v="' + v + '" data-h="' + Math.round(v / mx * 100) + '"></div>'; }).join('');
       var o = S.origin;
-      var org = '<div class="stack"><span style="flex:' + o.wa + ';background:var(--brass)"></span>' + (o.web ? '<span style="flex:' + o.web + ';background:var(--bone)"></span>' : '') + '<span style="flex:' + o.rec + ';background:var(--faint)"></span></div>' +
-        '<div class="lg"><span><i style="background:var(--brass)"></i>Agente · WhatsApp</span><b>' + o.wa + '%</b></div>' +
-        (o.web ? '<div class="lg"><span><i style="background:var(--bone)"></i>Agente · sitio web</span><b>' + o.web + '%</b></div>' : '') +
-        '<div class="lg"><span><i style="background:var(--faint)"></i>Recepción</span><b>' + o.rec + '%</b></div>' +
+      var org = '<div class="stack"><span style="flex:' + o.wa + ';background:var(--c1)"></span>' + (o.web ? '<span style="flex:' + o.web + ';background:var(--c2)"></span>' : '') + '<span style="flex:' + o.rec + ';background:var(--c3)"></span></div>' +
+        '<div class="lg"><span><i style="background:var(--c1)"></i>Agente · WhatsApp</span><b>' + o.wa + '%</b></div>' +
+        (o.web ? '<div class="lg"><span><i style="background:var(--c2)"></i>Agente · sitio web</span><b>' + o.web + '%</b></div>' : '') +
+        '<div class="lg"><span><i style="background:var(--c3)"></i>Recepción</span><b>' + o.rec + '%</b></div>' +
         '<div class="mini"><span>Recordatorios enviados</span><b>212</b></div><div class="mini" style="margin-top:0;border:0;padding-top:4px"><span>Asistencia confirmada</span><b>88%</b></div>';
       var fd = S.feed.map(function(f){ return '<li class="' + (f.al ? 'al' : '') + (f.fresh ? ' fresh' : '') + '"><time>' + f.t + '</time><span>' + f.h + '</span></li>'; }).join('');
       return head('Octubre · ciclo actual', 'Resumen de la clínica', '<span class="v-note">Actualizado en tiempo real</span>') +
@@ -306,7 +306,7 @@ var Admin = (function(){
           '<div class="kpi"><div class="n">' + S.kpi.resp + '</div><div class="l">Tiempo de<br>respuesta</div></div>' +
           '<div class="kpi"><div class="n">' + S.kpi.fuera + '%</div><div class="l">Conversaciones<br>fuera de horario</div></div>' +
         '</div>' +
-        '<div class="g2"><div class="card"><h5><span>Citas del agente</span><span>14 días</span></h5><div class="bars">' + bars + '</div><div class="bars-x"><span>29 sep</span><span>Hoy</span></div></div>' +
+        '<div class="g2"><div class="card"><h5><span>Citas del agente</span><span>14 días</span></h5><div class="bars">' + bars + '</div><div class="bars-x"><span>29 sep</span><span>Hoy</span></div><p class="chart-reading">' + b.reduce(function(a,v){return a+v;},0) + ' citas en 14 días. Hoy: ' + b[13] + '. Datos ficticios.</p><details class="chart-table"><summary>Ver como tabla</summary><table><caption>Citas del agente · 14 días ilustrativos</caption><thead><tr><th scope="col">Día</th><th scope="col">Citas</th></tr></thead><tbody>' + b.map(function(v,i){return '<tr><td>' + (i+1) + '</td><td>' + v + '</td></tr>';}).join('') + '</tbody></table></details></div>' +
         '<div class="card"><h5><span>Origen de las citas</span></h5>' + org + '</div></div>' +
         '<div class="card" style="margin-top:14px"><h5><span>Actividad reciente</span></h5><ul class="feed" style="margin-top:0">' + fd + '</ul></div>' +
         '<div class="demo-note">Ejemplo de uso · datos ficticios</div>';
@@ -328,7 +328,7 @@ var Admin = (function(){
       var hd = '<div class="cal-h"></div>' + DAYS.map(function(d, i){ return '<div class="cal-h' + (i === 2 ? ' today' : '') + '">' + d[0] + '<b>' + d[1] + '</b></div>'; }).join('');
       return head('Semana 12 – 17 octubre', 'Agenda', '<div class="chips">' + chips + '</div>') +
         '<div class="cal-wrap"><div class="cal">' + hd + '<div class="cal-t">' + times + '</div>' + cols + '</div></div>' +
-        '<div class="cal-leg"><span><i style="background:rgba(194,146,79,.25);border-left:2px solid var(--brass)"></i>Creada por el agente</span><span><i style="background:var(--alert-a);border-left:2px solid var(--alert)"></i>Cancelada</span><span><i style="background:repeating-linear-gradient(135deg,rgba(232,228,220,.15) 0 2px,transparent 2px 4px)"></i>Bloqueo</span></div>';
+        '<div class="cal-leg"><span><i style="background:color-mix(in srgb,var(--gr) 12%,transparent);border-left:2px solid var(--gr)"></i>Creada por el agente</span><span><i style="background:color-mix(in srgb,var(--gy) 12%,transparent);border-left:2px solid var(--gy)"></i>Cancelada</span><span><i style="background:repeating-linear-gradient(135deg,var(--ln2) 0 2px,transparent 2px 4px)"></i>Bloqueo</span></div>';
     },
     pros: function(){
       var cards = Object.keys(PROS).map(function(k){
@@ -359,7 +359,7 @@ var Admin = (function(){
     conv: function(){
       var list = S.convos.map(function(c){
         return '<button class="c-item' + (c.id === S.convSel ? ' on' : '') + (c.fresh ? ' fresh' : '') + '" data-c="' + c.id + '"><div class="r"><b>' + c.n + '</b><time>' + c.t + '</time></div><p>' + c.pre + '</p>' +
-          (c.flag ? '<span class="pill al">Derivada</span>' : '<span class="pill">' + c.ch + '</span>') + '</button>';
+          (c.flag ? '<span class="pill al">Pasó al equipo</span>' : '<span class="pill">' + c.ch + '</span>') + '</button>';
       }).join('');
       var c = S.convos.filter(function(x){ return x.id === S.convSel; })[0] || S.convos[0];
       var det = '<h6>' + c.n + '</h6><div class="meta"><span>' + c.ch + '</span><span>' + c.t + '</span><span>Agente Sonrisas · versión 7</span></div><div class="k">Qué hizo el agente</div><ol class="steps">' +
