@@ -1,6 +1,15 @@
-/* No marketing identifiers, patient data, or remote analytics are sent by this file. */
+/* Navigation, local contact events, and aggregate production web analytics. */
 (() => {
   'use strict';
+  // Keep local development and Vercel previews out of commercial-site reports.
+  // This public beacon token is not an API credential. No contact event is sent.
+  if (location.protocol === 'https:' && location.hostname === 'www.argus.cl' && navigator.doNotTrack !== '1') {
+    const analytics = document.createElement('script');
+    analytics.type = 'module';
+    analytics.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    analytics.dataset.cfBeacon = JSON.stringify({token:'701a1a6b71ba4bd782c9b3b6f9c4c299'});
+    document.head.appendChild(analytics);
+  }
   const button = document.querySelector('.menu-toggle');
   const menu = document.getElementById('main-nav');
   function closeMenu() { if (!button || !menu) return; menu.classList.remove('open'); button.setAttribute('aria-expanded','false'); }
