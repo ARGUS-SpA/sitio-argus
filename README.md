@@ -47,6 +47,7 @@ Opcionalmente, `python check_site.py --base-url http://127.0.0.1:8765` verifica 
 
 - [Decisiones comerciales y alcance](DECISIONES.md)
 - [Pendientes priorizados](CONTINUIDAD.md)
+- [Medición, Search Console y próximos controles](MEDICION.md)
 - [Publicación y recuperación](PUBLICACION.md)
 - [Validación realizada](VALIDACION.md)
 
