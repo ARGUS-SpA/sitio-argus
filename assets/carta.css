@@ -60,3 +60,56 @@ input,textarea,select{background:var(--bg);color:var(--tx);border:1px solid var(
 .demo-page .wa-top .wa-av,.demo-page .wa-top svg{color:var(--ac)}
 
 .demo-page em,.demo-page .h2 em{color:var(--tx)}.demo-page .phone,.demo-page .wa-screen,.demo-page .wa-top,.demo-page .wa-day,.demo-page .wa-input .field{border-radius:2px}.demo-page .wa-input .mic{background:var(--br);color:var(--on-br)}.demo-page .adm .feed li.al{color:var(--tx)}.demo-page .bar:after{font-size:12px}
+
+/* Keep the shared ARGUS header identical on commercial and demo pages. */
+.masthead .brand svg,.demo-page .masthead .brand svg{width:43px;height:43px;flex:0 0 43px}
+.masthead .brand>span,.demo-page .masthead .brand>span{font-family:var(--font-display);font-size:29px;font-weight:300;line-height:1;letter-spacing:.3em}
+.masthead .brand small,.demo-page .masthead .brand small{display:block;font:600 7px/1.5 var(--font-sans);letter-spacing:.08em;margin-top:8px;color:var(--tx2)}
+@media(max-width:850px) and (min-width:681px){
+ .masthead .brand>span,.demo-page .masthead .brand>span{font-size:24px}
+ .masthead .brand svg,.demo-page .masthead .brand svg{width:35px;height:35px;flex-basis:35px}
+}
+/* Compact mobile rhythm: preserve readable text and 44px touch targets. */
+@media(max-width:680px){
+ html{scroll-padding-top:76px}
+ body,body.demo-page{font-size:14px;line-height:1.5}
+ .container,.demo-page .blk .wrap{width:calc(100% - 32px)}
+ .nav-inner,.demo-page .masthead .nav-inner{min-height:64px;gap:12px}
+ .masthead .brand,.demo-page .masthead .brand{gap:10px}
+ .masthead .brand svg,.demo-page .masthead .brand svg{width:32px;height:32px;flex-basis:32px}
+ .masthead .brand>span,.demo-page .masthead .brand>span{font-size:24px}
+ .masthead .brand small,.demo-page .masthead .brand small{font-size:6px;margin-top:6px}
+ .masthead nav,.demo-page .masthead nav{top:64px;padding:16px}
+ .hero,.page-hero{padding-block:28px}
+ .hero-copy h1,.page-hero h1,.demo-intro h1,.legal-copy h1{font-size:38px;line-height:1.04}
+ .hero-copy>p,.page-hero .lead,.demo-intro>p{font-size:14px;line-height:1.55;margin-block:16px}
+ .hero-copy .hero-note{font-size:13px;line-height:1.5;margin-top:16px}
+ .hero-layout{gap:24px}
+ .eyebrow{font-size:11px;margin-bottom:12px}
+ .actions{gap:8px}.actions>.button,.button,.plan .button{min-height:44px;padding:10px 14px;font-size:14px;gap:12px}
+ .section{padding-block:36px}.section-heading{margin-bottom:20px}
+ h2,.section-heading h2,.closing h2,.offer h2,.demo-page .blk .h2{font-size:30px;line-height:1.1}
+ h3,.card h3,.service-grid h3,.flow h3,.timeline h2{font-size:25px;line-height:1.12}
+ .cards,.plans,.split,.founders{gap:12px}
+ .card,.plan,.founders article,.callout,.contact-card{padding:18px}
+ .card h3{margin-block:14px 10px}.card p,.service-grid p,.timeline p,.faq details>p{font-size:14px;line-height:1.55}
+ .section-heading>p{margin-top:16px}.text-link{margin-top:16px}
+ .product-scene{padding:16px}.scene-top{margin-bottom:16px}.scene-calendar{padding:12px}.scene-title{margin-bottom:12px}
+ .calendar-row{margin-block:8px}.calendar-row>div{padding:8px}
+ .scene-chat{padding:12px}.scene-chat p{font-size:14px;margin-bottom:12px}
+ .scene-chat .eyebrow{margin-bottom:8px}.scene-result{margin-block:16px 12px}.scene-disclaimer{line-height:1.45}
+ .proof-strip{padding-block:16px}.proof-strip>.container{gap:12px}
+ .flow li{padding-block:16px}.service-grid>a{padding:20px}.service-grid h3{margin-top:16px}
+ .plan h2{font-size:34px}.plan .eyebrow{margin-bottom:16px}.plan>p{margin-block:14px;font-size:14px}
+ .allowance{padding-block:12px}.allowance b{font-size:32px}.plan .check-list{margin-block:12px}.check-list li{padding-block:6px}
+ .offer-head{margin-bottom:20px}.offer th,.offer td{padding:12px 10px}
+ .faq summary{padding-block:16px;font-size:14px}.faq details>p{margin-bottom:16px}
+ .timeline li{padding-block:20px}.timeline p{margin-top:10px}
+ .contact-card .email{font-size:27px}.contact-card dl{margin-block:16px}
+ .footer{padding-block:32px 20px}.footer-grid{gap:20px}.footer-grid p{margin-top:16px}.footer-bottom{margin-top:20px;padding-top:16px}
+ .demo-intro{padding-block:28px 20px}.demo-page .blk{padding-top:24px}.demo-page #demo{padding-block:20px 36px}.demo-page #sitio{padding-top:36px!important}
+ .demo-page .demo{gap:20px}.demo-page .phone{height:460px}.demo-page .adm{height:600px}
+ .demo-page .side-card{padding:18px}.demo-page .site-row{gap:16px}
+ .legal-copy{padding-block:32px}.legal-copy h1{margin-bottom:24px}.legal-copy h2{margin-top:28px}.legal-copy p{font-size:14px;line-height:1.65}
+}
+@media(max-width:680px){.demo-page .phone{height:auto}.demo-page .phone .screen{height:440px;border-radius:2px}.demo-page section.blk{padding-block:24px 36px}.demo-page .blk .wrap{padding-inline:0}}
