@@ -29,7 +29,7 @@ La integración API de GitHub permitió leer, pero rechazó crear una rama con 4
 
 ## Pendientes
 
-Consultar CONTINUIDAD.md. Prioridad: confirmar analítica Cloudflare, configurar Search Console, conectar medición persistente de contactos, ordenar seguimiento comercial y verificar coherencia del contador y contratos privados de ATLAS.
+Consultar CONTINUIDAD.md. Etapa siguiente: ver MEDICION.md para Search Console y analítica comercial. La medición persistente de contactos se integrará después a LYNX por decisión de Javier. Siguen pendientes el seguimiento comercial y la coherencia del contador y contratos privados de ATLAS.
 
 La web comercial publicada no acredita que el backend esté habilitado para pacientes reales. Los límites y pruebas del producto operativo siguen documentados como pendientes en sus instrumentos y repositorios correspondientes.
 

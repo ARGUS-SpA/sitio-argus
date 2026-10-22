@@ -17,10 +17,10 @@ El acceso al repositorio privado `ARGUS-SpA/Plataforma-Digital-Ventas` no estuvo
 
 ## P1 · Medición y posicionamiento
 
-1. Confirmar la analítica de Cloudflare en el dominio real y su recolección de páginas.
-2. Configurar Search Console para el dominio, verificar propiedad y enviar sitemap.
+1. Cloudflare Web Analytics: propiedad independiente para www.argus.cl creada; código restringido a producción. Consultar MEDICION.md para estado y verificación.
+2. Search Console: dominio argus.cl verificado por TXT y sitemap enviado. Consultar MEDICION.md; el procesamiento e indexación dependen de Google.
 3. Revisar URLs indexadas, cobertura y consulta de marca; no inferir desindexación solo por una búsqueda.
-4. Conectar medición de clics de contacto a una herramienta aprobada. `assets/site.js` emite `argus:contact` con canal, ubicación y ruta, sin mensaje ni datos de pacientes. El evento local no guarda estadísticas por sí solo.
+4. Decisión de Javier: integrar medición de clics de contacto a LYNX en una etapa posterior. `assets/site.js` emite `argus:contact` con canal, ubicación y ruta, sin mensaje ni datos de pacientes. El evento local no guarda estadísticas por sí solo.
 5. Separar clics, contactos calificados, demos, propuestas y ventas. No etiquetar un clic de WhatsApp como cliente conseguido.
 6. Medir rendimiento y Core Web Vitals en producción. No se ha obtenido una puntuación de Lighthouse ni se garantiza una posición en buscadores.
 
@@ -45,4 +45,4 @@ Al terminar octubre de 2026, archivar la promoción y verificar el precio mostra
 
 ## Límites de este cambio
 
-Solo sitio comercial y documentación técnica. No se cambió código de ATLAS, SENTINEL, LYNX, DNS, facturación, seguridad de cuentas ni datos de clientes. No hay formulario con recepción en servidor: el contacto utiliza enlaces a WhatsApp y correo.
+Sitio comercial y documentación técnica. En la etapa de medición se añadió un TXT de verificación de Google sin modificar los registros de tráfico o correo. No se cambió código de ATLAS, SENTINEL, LYNX, facturación ni datos de clientes. No hay formulario con recepción en servidor: el contacto utiliza enlaces a WhatsApp y correo.
