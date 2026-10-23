@@ -12,16 +12,16 @@ Sitio estático en HTML, CSS y JavaScript para presentar ATLAS, sus planes y ser
 | Archivo | Contenido |
 | --- | --- |
 | `index.html` | Presentación y contacto |
-| `atlas.html` | Funciones, alcance y preguntas frecuentes |
+| `atlas.html` | Redirección a `demo.html#atlas` (contenido fusionado en Demo) |
 | `planes.html` | Precios, consumo, descuentos y condiciones |
 | `implementacion.html` | Contratación, configuración, entrega y salida |
 | `nosotros.html` | Equipo ARGUS |
 | `web.html` | Web opcional y evaluación de automatizaciones |
-| `demo.html` | Simulación interactiva con datos ficticios |
+| `demo.html` | Demo: qué es ATLAS, simulación interactiva, web de ejemplo y preguntas frecuentes |
 | `privacidad.html`, `terminos.html`, `eliminacion-datos.html` | Textos públicos |
 | `licencias/` | Atribuciones y licencias conservadas |
 
-Los estilos comerciales están en `assets/site.css` y su navegación en `assets/site.js`. La demostración conserva la lógica del sitio anterior, adaptada en `assets/demo.js` y `assets/demo-fixes.css`. `styles.css` se conserva para la página existente de licencias. `assets/argus-app-icon-1024.png` se conserva desde la versión anterior.
+Los estilos comerciales están en `assets/site.css`, `assets/carta.css` y los ajustes de octubre 2026 en `assets/ajustes.css`, y su navegación en `assets/site.js`. La demostración conserva la lógica del sitio anterior, adaptada en `assets/demo.js` y `assets/demo-fixes.css`. `styles.css` se conserva para la página existente de licencias. `assets/argus-app-icon-1024.png` se conserva desde la versión anterior.
 
 ## Desarrollo local
 

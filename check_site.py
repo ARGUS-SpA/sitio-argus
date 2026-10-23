@@ -42,7 +42,7 @@ def main():
     for value in ('2.000','7.000','19.000','$159.000','$429.000','$1.090.000','$79.500','$214.500','$545.000','después de la entrega','WhatsApp incluido'):
         if value not in plans: errors.append(f'planes.html: expected {value}')
     if args.base_url:
-        for file in ('index.html','atlas.html','planes.html','implementacion.html','nosotros.html','web.html','demo.html','privacidad.html','terminos.html','eliminacion-datos.html','licencias/','assets/site.css','assets/site.js','assets/demo.js','assets/demo-fixes.css','sitemap.xml','robots.txt'):
+        for file in ('index.html','atlas.html','planes.html','implementacion.html','nosotros.html','web.html','demo.html','privacidad.html','terminos.html','eliminacion-datos.html','licencias/','assets/site.css','assets/site.js','assets/demo.js','assets/demo-fixes.css','assets/ajustes.css','sitemap.xml','robots.txt'):
             with urllib.request.urlopen(args.base_url.rstrip('/')+'/'+file,timeout=20) as response:
                 if response.status!=200: errors.append(f'HTTP {response.status}: {file}')
     print(json.dumps({'html_files':len(docs),'local_references':count,'errors':errors},ensure_ascii=False,indent=2))

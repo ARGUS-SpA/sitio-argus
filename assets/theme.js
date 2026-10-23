@@ -8,7 +8,7 @@
   }
   apply(saved);
   document.addEventListener('DOMContentLoaded', () => {
-    const target = document.querySelector('.footer-grid > div, footer');
+    const target = document.querySelector('.footer-bottom') || document.querySelector('footer');
     if (!target) return;
     const label = document.createElement('label'); label.className = 'theme-control';
     const select = document.createElement('select'); select.setAttribute('aria-label','Tema de apariencia');

@@ -27,7 +27,7 @@
   const promotion = document.querySelector('[data-promotion-end]');
   if (promotion && today > promotion.dataset.promotionEnd) promotion.classList.add('expired');
   if (/\/(?:index\.html)?$/.test(location.pathname)) {
-    const redirects = {'#beneficios':'atlas.html','#sitio':'web.html','#demo':'demo.html#demo','#nosotros':'nosotros.html'};
+    const redirects = {'#beneficios':'demo.html#atlas','#sitio':'web.html','#demo':'demo.html#demo','#nosotros':'nosotros.html'};
     if (redirects[location.hash]) location.replace(redirects[location.hash]);
   }
 })();
