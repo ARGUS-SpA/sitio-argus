@@ -188,3 +188,19 @@
 .demo-page #sitio .sub{margin:10px 0 0;font-size:14px}
 @media(max-width:1000px){.demo-page #sitio .site-row{grid-template-columns:1fr}.demo-page .site .s-links{display:none}}
 @media(max-width:760px){.demo-page .site{height:auto}.demo-page .site .s-hero{grid-template-columns:1fr;padding:24px 18px}.demo-page .site .s-services{grid-template-columns:1fr 1fr}.demo-page .site .s-services div:nth-child(3){border-left:0}.demo-page .site .s-nav{padding:12px 16px}.demo-page .site .s-trust{gap:18px}}
+
+/* 30-oct-2026: encabezado más limpio, microtexto legible y barra de acción en móvil. */
+.masthead .brand small,.demo-page .masthead .brand small{display:none}
+.footer .brand small{display:block;font-size:10px;letter-spacing:.12em;margin-top:8px}
+.eyebrow,.card-index{font-size:12px}
+.text-link{font-size:15px;padding-block:6px}
+.mobile-cta{display:none}
+@media(max-width:680px){
+ .mobile-cta{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--bg) 94%,transparent);border-top:1px solid var(--ln2);backdrop-filter:blur(8px);transform:translateY(110%);transition:transform 260ms var(--ease)}
+ .mobile-cta.show{transform:none}
+ .mobile-cta .button{width:100%;justify-content:center;min-height:46px;font-size:14px}
+ body.has-mobile-cta .footer{padding-bottom:88px}
+ .masthead nav>a:not(.button){min-height:44px;display:flex;align-items:center}
+ .footer-grid>div>a:not(.brand),.footer-bottom a{display:inline-flex;align-items:center;min-height:40px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-cta{transition:none}}

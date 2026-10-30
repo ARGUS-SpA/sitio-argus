@@ -26,6 +26,29 @@
   const today = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Santiago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
   const promotion = document.querySelector('[data-promotion-end]');
   if (promotion && today > promotion.dataset.promotionEnd) promotion.classList.add('expired');
+  // Panel tour tabs (portada): roving tabindex and arrow keys.
+  const tablist = document.querySelector('.panel-tabs');
+  if (tablist) {
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+    const select = tab => tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; const pane = document.getElementById(t.getAttribute('aria-controls')); if (pane) pane.hidden = !on; });
+    tabs.forEach(t => t.addEventListener('click', () => select(t)));
+    tablist.addEventListener('keydown', e => { const i = tabs.indexOf(document.activeElement); if (i < 0) return; let n = null;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (i + 1) % tabs.length; else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (i + tabs.length - 1) % tabs.length; else if (e.key === 'Home') n = 0; else if (e.key === 'End') n = tabs.length - 1;
+      if (n !== null) { e.preventDefault(); tabs[n].focus(); select(tabs[n]); } });
+  }
+  // Mobile call-to-action bar: appears after the first screen, hides near contact and footer.
+  if (!document.body.classList.contains('demo-page')) {
+    const wa = 'https://wa.me/56993477920?text=Hola%2C%20me%20gustar%C3%ADa%20conocer%20ATLAS%20y%20coordinar%20una%20demo.';
+    const bar = document.createElement('div'); bar.className = 'mobile-cta'; bar.setAttribute('aria-label', 'Acciones rápidas');
+    bar.innerHTML = '<a class="button" href="' + wa + '" target="_blank" rel="noopener" data-contact="whatsapp" data-placement="barra_movil">Coordinar demo</a><a class="button secondary" href="demo.html">Ver la demo</a>';
+    document.body.appendChild(bar); document.body.classList.add('has-mobile-cta');
+    const blockers = [document.getElementById('contacto'), document.querySelector('.footer')].filter(Boolean);
+    const visible = new Set();
+    const update = () => { bar.classList.toggle('show', window.scrollY > 520 && visible.size === 0); };
+    if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { es.forEach(en => en.isIntersecting ? visible.add(en.target) : visible.delete(en.target)); update(); }); blockers.forEach(b => io.observe(b)); }
+    window.addEventListener('scroll', update, {passive: true}); update();
+  }
+
   if (/\/(?:index\.html)?$/.test(location.pathname)) {
     const redirects = {'#beneficios':'demo.html#atlas','#sitio':'web.html','#demo':'demo.html#demo','#nosotros':'nosotros.html'};
     if (redirects[location.hash]) location.replace(redirects[location.hash]);
