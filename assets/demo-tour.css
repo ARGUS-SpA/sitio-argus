@@ -115,3 +115,5 @@
  .tour-rows li{grid-template-columns:48px minmax(0,1fr);}.tour-rows em{grid-column:2;justify-self:start}
  .tour-cta{padding:20px}.tour-cta b{font-size:22px}.tour-cta .button{width:100%;justify-content:center}
 }
+
+.tour{position:relative}.tour-anchor{position:absolute;top:0;left:0;width:1px;height:1px}

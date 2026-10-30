@@ -123,5 +123,11 @@
   $('tourReset').addEventListener('click', () => { stopTour(); select(0); });
 
   // Abre con la primera situación ya completa para que nunca se vea vacía.
-  select(0, true);
+  // Enlaces directos desde la portada: demo.html#agendar, #recordatorio, #cancelacion, #lista-de-espera, #equipo.
+  const HASH = { agendar: 0, recordatorio: 1, cancelacion: 2, 'lista-de-espera': 3, equipo: 4 };
+  const fromHash = () => HASH[location.hash.slice(1)];
+  const start = fromHash();
+  if (start !== undefined) { select(start); requestAnimationFrame(() => root.scrollIntoView({ block: 'start' })); }
+  else select(0, true);
+  window.addEventListener('hashchange', () => { const i = fromHash(); if (i !== undefined) { stopTour(); select(i); root.scrollIntoView({ block: 'start' }); } });
 })();
