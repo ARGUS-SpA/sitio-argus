@@ -447,6 +447,8 @@ var Admin = (function(){
     setTimeout(function(){ f.style.strokeDasharray = (C * (mx - mn) / 100) + ' ' + C; }, 700);
   });
 
+  // La demo principal ahora vive en demo-tour.js; este bloque solo corre si existe el panel anterior.
+  if(document.querySelector('#adm .adm')){
   Admin.mount(document.querySelector('#adm .adm'));
   var wa = new Chat.Player(document.querySelector('#phone .phone'));
   var cap = document.getElementById('cap');
@@ -469,6 +471,8 @@ var Admin = (function(){
   Admin.onNav = function(){ demo.stopTour(); };
 
   // Demonstration starts only after an explicit action.
+
+  }
 
   // sitio web (versión con web)
   var host = document.getElementById('siteHost');
