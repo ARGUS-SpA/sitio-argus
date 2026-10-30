@@ -53,3 +53,7 @@ No hay resultados de clientes verificados para publicar en esta versión. Las de
 Las páginas legales usan los textos públicos del documento 14 de la edición facilitada por el usuario, conservando su estado de desarrollo. No se declara ATLAS habilitado para pacientes reales por haber publicado el sitio. El ZIP privado no se incorpora a este repositorio público.
 
 Las propuestas de actualización del contrato y orden de servicio que resuelven WhatsApp incluido se entregaron por separado. Deben revisarse en el repositorio privado de ATLAS antes de usarse para contratar; la publicación comercial no modifica instrumentos firmados.
+
+## Precios como valores desde (30 de octubre de 2026)
+
+Por definición de los socios, todos los precios publicados (mensualidades e implementación) se presentan como valores "desde". El precio final se define en la propuesta según la implementación y los requisitos de cada centro. Los tramos de respuestas y las condiciones de consumo no cambian.
