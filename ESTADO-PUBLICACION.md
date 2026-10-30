@@ -34,3 +34,11 @@ Consultar CONTINUIDAD.md. Etapa siguiente: ver MEDICION.md para Search Console y
 La web comercial publicada no acredita que el backend esté habilitado para pacientes reales. Los límites y pruebas del producto operativo siguen documentados como pendientes en sus instrumentos y repositorios correspondientes.
 
 Esta actualización documental posterior registra la evidencia del commit que publicó el sitio; no modifica el diseño ni los precios aprobados.
+
+## Publicación 30 de octubre de 2026 · portada orientada a conversión
+
+- Pull request: https://github.com/ARGUS-SpA/sitio-argus/pull/9, integrado.
+- Commit de integración: `18dff6e2462e05b8971f8872c4628c753117eacd`. Vercel: `success`.
+- Punto anterior para recuperación: `0b01ea3233dc7fb03a7ae7238d408a736c7f970f`.
+- Verificado en https://www.argus.cl/: portada nueva con apariencia Claro por defecto, video demostrativo reproducible (`assets/media/atlas-demo-clinica.mp4`, 200, video/mp4), pestañas del panel funcionando, og:image accesible, demo.html y planes.html con respuesta 200, sitemap y robots accesibles, sin meta robots de bloqueo.
+- Cambios descritos en DISENO-CARTA-NAUTICA.md.
