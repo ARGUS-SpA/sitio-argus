@@ -1,20 +1,23 @@
 /* Theme preference is local to this browser. */
 (() => {
-  let saved = 'dark';
-  try { saved = localStorage.getItem('argus-theme') || 'dark'; } catch (_) {}
+  let saved = 'light';
+  try { saved = localStorage.getItem('argus-theme') || 'light'; } catch (_) {}
   function apply(value) {
     if (value === 'system') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.dataset.theme = value === 'light' ? 'light' : 'dark';
   }
   apply(saved);
+  const meta=document.querySelector('meta[name="theme-color"]');
+  const paint=()=>{if(!meta)return;const dark=document.documentElement.dataset.theme==='dark'||(!document.documentElement.dataset.theme&&matchMedia('(prefers-color-scheme: dark)').matches);meta.content=dark?'#0B1118':'#F3EEE3';};
+  paint();
   document.addEventListener('DOMContentLoaded', () => {
     const target = document.querySelector('.footer-bottom') || document.querySelector('footer');
     if (!target) return;
     const label = document.createElement('label'); label.className = 'theme-control';
     const select = document.createElement('select'); select.setAttribute('aria-label','Tema de apariencia');
-    [['dark','Oscuro'],['light','Claro'],['system','Sistema']].forEach(([value,text]) => { const option = document.createElement('option'); option.value=value; option.textContent=text; select.append(option); });
+    [['light','Claro'],['dark','Oscuro'],['system','Sistema']].forEach(([value,text]) => { const option = document.createElement('option'); option.value=value; option.textContent=text; select.append(option); });
     label.append('Apariencia',select); target.append(label); select.value=saved;
-    select.addEventListener('change',()=>{apply(select.value);try{localStorage.setItem('argus-theme',select.value);}catch(_){}});
+    select.addEventListener('change',()=>{apply(select.value);paint();try{localStorage.setItem('argus-theme',select.value);}catch(_){}});
   });
 })();
 
