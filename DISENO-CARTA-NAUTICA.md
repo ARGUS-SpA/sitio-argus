@@ -25,3 +25,9 @@ A partir de la auditoría UX/UI de la portada:
 - CTA único "Coordinar demo" por WhatsApp a Javier; Camilo se mantiene como alternativa identificada. Se eliminaron "Inicio" y "Contacto" del menú y se agregó "Producto".
 - Barra de acción fija en móvil, lema del logo fuera del encabezado y microtexto mínimo de 11–12 px.
 - Imagen social og:image 1200×630 (assets/media/og-argus-atlas.jpg) y etiquetas Twitter en las páginas comerciales.
+
+## Hero y demo guiada · 30 de octubre de 2026 (tarde)
+
+- Hero de la portada: la ilustración muestra la promesa del titular (WhatsApp a las 23:41 con la clínica cerrada, cita nueva en la agenda y confirmación). Estilos en assets/home.css (bloque "Hero v3").
+- Demo: el bloque principal de demo.html es ahora una demo guiada de cinco situaciones (agendar, recordatorio, cancelación, lista de espera, pasa al equipo) en assets/demo-tour.js y assets/demo-tour.css. Abre con la primera situación completa, conecta cada conversación con lo que registra el panel y termina con un llamado a coordinar demo. Datos ficticios.
+- assets/demo.js conserva el simulador del sitio web de ejemplo; su panel anterior solo se inicializa si existe #adm.
