@@ -117,3 +117,10 @@
 }
 
 .tour{position:relative}.tour-anchor{position:absolute;top:0;left:0;width:1px;height:1px}
+
+/* Recorrido: barra de avance y llamado final */
+.tour-story{position:relative;overflow:hidden}
+.tour-progress{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(243,238,227,.12);opacity:0;transition:opacity .3s}
+.tour-progress i{display:block;height:100%;width:20%;background:#E0B77A;transition:width .6s var(--ease)}
+.tour.touring .tour-progress{opacity:1}
+.tour-cta.lit{border-color:var(--br);box-shadow:0 0 0 4px color-mix(in srgb,var(--br) 18%,transparent);transition:box-shadow .4s,border-color .4s}

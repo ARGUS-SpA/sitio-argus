@@ -158,3 +158,25 @@
  .plans2-section{padding-block:32px 48px}.plan2{padding:22px}.plan2 .price b{font-size:40px}
  .plans2-incl ul{grid-template-columns:1fr}.count-demo .row{grid-template-columns:1fr 104px}
 }
+
+/* 30-oct tarde: leyenda simple, panel claro, precios desde, conteo simple */
+.tour2-legend ul{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:12px}
+.tour2-legend ul li{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;font-size:16px;line-height:1.45;color:var(--tx)}
+.tour2-legend ul svg{width:18px;height:18px;color:var(--gr);margin-top:2px}
+.v-panel{display:grid;grid-template-columns:120px 1fr;background:var(--s1);border:1px solid var(--ln2);border-radius:4px;overflow:hidden;height:140px}
+.v-panel .side{border-right:1px solid var(--ln);padding:10px 8px;display:flex;flex-direction:column;gap:4px}
+.v-panel .side span{font-size:12px;padding:4px 8px;border-radius:2px;color:var(--tx2)}
+.v-panel .side span.on{background:var(--s2);color:var(--tx);font-weight:600;box-shadow:inset 2px 0 0 var(--br)}
+.v-panel .main{display:flex;flex-direction:column;justify-content:center;padding:0 22px}
+.v-panel .main small{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--tx3)}
+.v-panel .main b{font:400 46px/1 var(--font-display);color:var(--br);margin:4px 0}
+.v-panel .main span{font-size:13px;color:var(--tx2)}
+.plan2 .price .from,.home-plans .price .from{display:block;font:600 12px var(--font-sans);letter-spacing:.07em;text-transform:uppercase;color:var(--tx3);margin-bottom:6px}
+.plans-from{margin:12px 0 0;font-size:14px;color:var(--tx3);max-width:80ch}
+.count-simple{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.count-simple li{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border:1px solid var(--ln2);background:var(--s1);border-radius:4px}
+.count-simple .who{font-size:15px;color:var(--tx)}
+.count-simple b{font-size:13px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--tx3)}
+.count-simple li.yes{border-color:var(--br);background:color-mix(in srgb,var(--br) 7%,var(--s1))}
+.count-simple li.yes b{color:var(--br)}
+@media(max-width:680px){.count-simple{grid-template-columns:1fr}}

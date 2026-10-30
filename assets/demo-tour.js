@@ -48,7 +48,7 @@
     b.type = 'button'; b.className = 'tour-scn'; b.setAttribute('role', 'tab'); b.id = 'tour-tab-' + i;
     b.setAttribute('aria-controls', 'tourPanel');
     b.innerHTML = '<span class="n">' + pad(i + 1) + '</span><b>' + esc(s.name) + '</b><span class="h">' + esc(s.hint) + '</span>';
-    b.addEventListener('click', () => { stopTour(); select(i); });
+    b.addEventListener('click', () => { stopTour(); select(i); paint(); });
     tabs.appendChild(b);
   });
   tabs.addEventListener('keydown', e => {
@@ -57,7 +57,7 @@
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (i + 1) % list.length;
     else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (i + list.length - 1) % list.length;
     else if (e.key === 'Home') n = 0; else if (e.key === 'End') n = list.length - 1;
-    if (n !== null) { e.preventDefault(); stopTour(); list[n].focus(); select(n); }
+    if (n !== null) { e.preventDefault(); stopTour(); list[n].focus(); select(n); paint(); }
   });
 
   let cur = -1, run = 0, tourTimer = null;
@@ -109,18 +109,39 @@
     return playMsgs(i, run, instant);
   }
 
-  const playBtn = $('tourPlay');
-  function stopTour() { if (tourTimer) { tourTimer = null; } playBtn.querySelector('span').textContent = 'Ver recorrido completo · 30 s'; playBtn.setAttribute('aria-pressed', 'false'); }
-  async function tour() {
-    const id = {}; tourTimer = id; playBtn.querySelector('span').textContent = 'Recorriendo…'; playBtn.setAttribute('aria-pressed', 'true');
-    for (let i = 0; i < S.length; i++) {
-      if (tourTimer !== id) return;
-      await select(i); await sleep(2200);
-    }
-    if (tourTimer === id) stopTour();
+  // Recorrido guiado: reproducir, pausar al instante, continuar y volver a ver.
+  const playBtn = $('tourPlay'); const label = playBtn.querySelector('span');
+  const icon = playBtn.querySelector('svg');
+  const PLAY = '<path d="M5 3.5v13l11-6.5z"/>', PAUSE = '<path d="M5.5 3.5h3v13h-3zM11.5 3.5h3v13h-3z"/>', AGAIN = '<path d="M4 10a6 6 0 1 0 2-4.5M4 3.5v3h3" fill="none" stroke="currentColor" stroke-width="1.6"/>';
+  const bar = $('tourProgress');
+  let mode = 'idle', tourId = null;
+  function paint() {
+    const txt = { idle: 'Ver recorrido completo · 30 s', playing: 'Pausar recorrido', paused: 'Continuar recorrido', done: 'Ver de nuevo' }[mode];
+    label.textContent = txt; icon.innerHTML = mode === 'playing' ? PAUSE : mode === 'done' ? AGAIN : PLAY;
+    playBtn.setAttribute('aria-pressed', String(mode === 'playing'));
+    root.classList.toggle('touring', mode === 'playing' || mode === 'paused');
+    if (bar) bar.style.width = ((cur + 1) / S.length * 100) + '%';
+    const cta = root.querySelector('.tour-cta'); if (cta) cta.classList.toggle('lit', mode === 'done');
   }
-  playBtn.addEventListener('click', () => { if (tourTimer) { stopTour(); } else { tour(); } });
-  $('tourReset').addEventListener('click', () => { stopTour(); select(0); });
+  function stopTour() { tourId = null; if (mode !== 'idle') { mode = 'idle'; paint(); } }
+  function pause() { tourId = null; mode = 'paused'; select(cur, true); paint(); }
+  async function tour(from) {
+    const id = {}; tourId = id; mode = 'playing';
+    for (let i = from; i < S.length; i++) {
+      if (tourId !== id) return;
+      const p = select(i); paint(); await p;
+      if (tourId !== id) return;
+      await sleep(i === S.length - 1 ? 1200 : 2600);
+    }
+    if (tourId === id) { tourId = null; mode = 'done'; paint(); }
+  }
+  playBtn.addEventListener('click', () => {
+    if (mode === 'playing') pause();
+    else if (mode === 'paused') tour(cur);
+    else tour(0);
+  });
+  $('tourReset').addEventListener('click', () => { stopTour(); select(0, true); paint(); });
+  paint();
 
   // Abre con la primera situación ya completa para que nunca se vea vacía.
   // Enlaces directos desde la portada: demo.html#agendar, #recordatorio, #cancelacion, #lista-de-espera, #equipo.
