@@ -51,3 +51,14 @@ Revertir el commit de esta etapa retira el loader y la actualización de privaci
 ## Publicación de esta etapa
 
 Revisión y despliegue previo: https://github.com/ARGUS-SpA/sitio-argus/pull/7. Las comprobaciones de Vercel pasaron. GitHub mantuvo la comprobación de integrabilidad en estado desconocido; la conexión API rechazó integrar con 403. Se publicaron los mismos archivos revisados mediante la sesión autorizada del navegador directamente en main, sin forzar una integración ni cambiar reglas, permisos o credenciales. El PR se conserva como referencia de revisión y se cierra al completar la publicación directa.
+
+## Correos de prospección: medición por mensaje (noviembre 2026)
+
+Actualización: 3 de noviembre de 2026, hora de Chile.
+
+- `vercel.json` agrega dos rutas que muestran la misma demo: `/demo-horas` y `/demo-cancelaciones`. Vercel las sirve como reescritura (la URL del navegador no cambia) y `demo.html` mantiene su `canonical`, por lo que no se crean páginas duplicadas para Google.
+- Cada correo de prospección enlaza a la ruta de su mensaje. En Cloudflare Web Analytics (sitio `www.argus.cl`) las visitas aparecen separadas por ruta: así se comparan los clics de cada mensaje sin agregar proveedores, cookies ni cambios en `privacidad.html`.
+- Cloudflare Web Analytics no muestra parámetros `utm_*`; por eso se usan rutas y no etiquetas UTM.
+- Cuenta visitas agregadas, no identifica clínicas. La señal de interés individual sigue siendo la respuesta al correo.
+- No se modificó la sitemap: estas rutas no son páginas nuevas para indexar.
+- Recuperación: eliminar `vercel.json` y volver a enlazar `demo.html` desde el script de envío.
