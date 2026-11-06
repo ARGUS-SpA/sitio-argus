@@ -592,3 +592,14 @@
 /* Móvil: el carrusel "Lo que cambia" no debe ensanchar la página (texto oculto contenido en su tarjeta). */
 .chg-card{position:relative}
 @media(max-width:767px){.chg-grid{width:100vw;margin-left:calc(50% - 50vw);margin-right:0;box-sizing:border-box}}
+
+/* Planes: etiqueta, nombre, precio, viñetas y botón a la misma altura en las tres tarjetas. */
+.plan-card .pc-top{min-height:26px}
+@media(min-width:901px){
+  @supports (grid-template-rows:subgrid){
+    .plan-cards{grid-auto-rows:auto;row-gap:0}
+    .plan-card,.plan-card.on{display:grid;grid-row:span 6;grid-template-rows:subgrid;row-gap:18px;align-content:start}
+    .plan-card .plan-for{margin:-8px 0 0}
+    .plan-card .button{align-self:end}
+  }
+}
