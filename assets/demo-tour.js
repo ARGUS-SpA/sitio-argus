@@ -1,42 +1,15 @@
-/* ARGUS · Demo guiada de ATLAS (30-oct-2026). Datos ficticios; no envía mensajes. */
+/* ARGUS · Demo guiada de ATLAS. Datos ficticios; no envía mensajes.
+   Las situaciones y las filas de la agenda salen del perfil de rubro (assets/demo-rubros.js). */
 (() => {
   'use strict';
   const root = document.getElementById('demo');
   if (!root || !document.getElementById('tourTabs')) return;
+  const PF = window.ARGUS_PERFIL;
+  if (!PF) return;
 
-  const S = [
-    { name: 'Agendar', hint: 'Un paciente pide hora por WhatsApp', clock: '23:41', nav: 'agenda', tone: 'br',
-      story: 'Lunes 23:41, clínica cerrada. Valentina pide hora y ATLAS ofrece horarios reales de la agenda.',
-      result: 'Cita agendada sin intervención del equipo',
-      msgs: [['u', 'Hola, ¿tienen hora para limpieza esta semana?', '23:41'], ['a', 'Hola Valentina. Tengo el jueves 29 a las 10:00 o a las 16:30 con la Dra. Reinoso. ¿Cuál le acomoda?', '23:41'], ['u', '16:30, por favor', '23:42'], ['a', 'Listo. Quedó agendada el jueves 29 a las 16:30. Le enviaré un recordatorio el día anterior.', '23:42']],
-      event: 'Nueva cita · Jueves 29 · 16:30', eventSub: 'Valentina Rojas · limpieza · origen WhatsApp', day: 'Jueves 29',
-      hl: '16:30', hlPill: 'Nueva', hlWho: 'Valentina Rojas', hlWhat: 'Limpieza · Dra. Reinoso' },
-    { name: 'Recordatorio', hint: 'ATLAS confirma la asistencia', clock: '09:00', nav: 'agenda', tone: 'gr',
-      story: 'El día antes, ATLAS envía el recordatorio y registra la respuesta del paciente.',
-      result: 'Asistencia confirmada en la agenda',
-      msgs: [['a', 'Hola Tomás. Le recordamos su hora mañana martes a las 10:30 con el Dr. Bravo. ¿Confirma su asistencia?', '09:00'], ['u', 'Confirmo, gracias', '09:14'], ['a', 'Perfecto, lo esperamos. Si necesita cambiarla, escríbanos por aquí.', '09:14']],
-      event: 'Asistencia confirmada · Martes 10:30', eventSub: 'Tomás Vergara · respondió al recordatorio', day: 'Martes 27',
-      hl: '10:30', hlPill: 'Confirmada', hlWho: 'Tomás Vergara', hlWhat: 'Control · Dr. Bravo' },
-    { name: 'Cancelación', hint: 'Se libera un horario', clock: '18:20', nav: 'agenda', tone: 'gy',
-      story: 'Un paciente avisa que no podrá asistir. ATLAS cancela la hora y deja el cupo libre.',
-      result: 'Cupo liberado, listo para ofrecerse',
-      msgs: [['u', 'Hola, no voy a poder ir el viernes a las 11:00', '18:20'], ['a', 'Entendido, Gaspar. Cancelé su hora del viernes a las 11:00. ¿Quiere que le busque otro horario?', '18:20'], ['u', 'Más adelante, gracias', '18:21']],
-      event: 'Hora cancelada · Viernes 11:00', eventSub: 'Gaspar Vidal · el cupo queda disponible', day: 'Viernes 30',
-      hl: '11:00', hlPill: 'Libre', hlWho: 'Disponible', hlWhat: 'Cancelada por Gaspar Vidal' },
-    { name: 'Lista de espera', hint: 'El cupo vuelve a ocuparse', clock: '18:24', nav: 'espera', tone: 'gr',
-      story: 'ATLAS ofrece el cupo liberado a quien estaba en la lista de espera.',
-      result: 'Cupo recuperado en 3 minutos',
-      msgs: [['a', 'Hola Javiera. Se liberó una hora el viernes 30 a las 11:00 con la Dra. Reinoso. ¿Se la reservo?', '18:24'], ['u', 'Sí, la tomo', '18:27'], ['a', 'Listo, quedó a su nombre. Le llegará la confirmación por correo.', '18:27']],
-      event: 'Cupo recuperado · Viernes 11:00', eventSub: 'Javiera Pinto · desde lista de espera', day: 'Viernes 30',
-      hl: '11:00', hlPill: 'Recuperada', hlWho: 'Javiera Pinto', hlWhat: 'Evaluación · desde lista de espera' },
-    { name: 'Pasa al equipo', hint: 'Un caso que necesita una persona', clock: '18:12', nav: 'bandeja', tone: 'or',
-      story: 'Una urgencia queda fuera de lo que el agente resuelve: pasa a la bandeja con un resumen.',
-      result: 'Su equipo recibe el caso con contexto',
-      msgs: [['u', 'Me duele una muela desde ayer. ¿Me pueden ver hoy?', '18:12'], ['a', 'Lamento la molestia, Matías. Le conecto con el equipo de la clínica. ¿Me deja su teléfono?', '18:12'], ['u', '+56 9 •••• 7310', '18:13'], ['a', 'Gracias. Le responden por aquí en unos minutos.', '18:13']],
-      event: 'Pasó a una persona · Urgencia', eventSub: 'Matías Fuentes · en la bandeja con resumen' }
-  ];
-  const BASE = [['09:00', 'Renata Campos', 'Control · Dra. Reinoso', 'Agendada'], ['10:30', 'Tomás Vergara', 'Control · Dr. Bravo', 'Agendada'], ['11:00', 'Gaspar Vidal', 'Evaluación · Dra. Reinoso', 'Agendada'], ['15:00', 'Cristóbal Ruiz', 'Evaluación · Dr. Bravo', 'Agendada'], ['16:30', 'Disponible', 'Dra. Reinoso', 'Libre'], ['17:30', 'Antonia Reyes', 'Ortodoncia · Dra. Reinoso', 'Agendada']];
-  const NAV = [['inicio', 'Inicio'], ['agenda', 'Agenda'], ['espera', 'Lista de espera'], ['bandeja', 'Bandeja'], ['pacientes', 'Pacientes']];
+  const S = PF.tour;
+  const BASE = PF.base;
+  const NAV = [['inicio', 'Inicio'], ['agenda', 'Agenda'], ['espera', 'Lista de espera'], ['bandeja', 'Bandeja'], ['pacientes', 'Clientes']];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
   const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -65,11 +38,12 @@
 
   function renderPanel(i) {
     const c = S[i];
-    $('tourNav').innerHTML = NAV.map(([k, l]) => '<span class="' + (k === c.nav ? 'on' : '') + '">' + l + (k === 'bandeja' && i === 4 ? '<i>1</i>' : '') + '</span>').join('');
+    $('tourNav').innerHTML = NAV.map(([k, l]) => '<span class="' + (k === c.nav ? 'on' : '') + '">' + l + (k === 'bandeja' && c.bandeja ? '<i>1</i>' : '') + '</span>').join('');
     const ev = $('tourEvent'); ev.className = 'tour-event t-' + c.tone; ev.classList.remove('in');
     $('tourEventT').textContent = c.event; $('tourEventS').textContent = c.eventSub;
-    if (i === 4) {
-      $('tourView').innerHTML = '<div class="tour-vh"><h2>Bandeja</h2><span>Por atender · 1</span></div><article class="tour-inbox"><div><b>Matías Fuentes</b><small>Urgencia · hace 1 min</small></div><p><b>Resumen del agente:</b> dolor de muela desde ayer, pide atención hoy. Dejó su teléfono.</p><div class="acts"><span class="p">Tomar conversación</span><span>Agendar hora</span><span>Devolver al agente</span></div></article><p class="tour-fine">Fuera del horario de su equipo, la conversación queda pendiente en la bandeja.</p>';
+    if (c.bandeja) {
+      const b = c.bandeja;
+      $('tourView').innerHTML = '<div class="tour-vh"><h2>Bandeja</h2><span>Por atender · 1</span></div><article class="tour-inbox"><div><b>' + esc(b.who) + '</b><small>' + esc(b.meta) + '</small></div><p><b>Resumen del agente:</b> ' + esc(b.res) + '</p><div class="acts"><span class="p">Tomar conversación</span><span>Agendar hora</span><span>Devolver al agente</span></div></article><p class="tour-fine">Fuera del horario de su equipo, la conversación queda pendiente en la bandeja.</p>';
     } else {
       const rows = BASE.map(([time, who, what, pill]) => {
         const hit = time === c.hl;
@@ -77,7 +51,7 @@
         const free = who === 'Disponible';
         return '<li class="' + (hit ? 'hit t-' + c.tone : free ? 'free' : '') + '"><time>' + time + '</time><span><b>' + esc(who) + '</b><small>' + esc(what) + '</small></span><em>' + esc(pill) + '</em></li>';
       }).join('');
-      $('tourView').innerHTML = '<div class="tour-vh"><h2>' + c.day + '</h2><span>Dra. Camila Reinoso · Dr. Ignacio Bravo</span></div><ul class="tour-rows">' + rows + '</ul>';
+      $('tourView').innerHTML = '<div class="tour-vh"><h2>' + c.day + '</h2><span>' + esc(PF.personas) + '</span></div><ul class="tour-rows">' + rows + '</ul>';
     }
   }
 

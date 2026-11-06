@@ -39,7 +39,7 @@ def main():
             count+=1
     ET.fromstring((root/'sitemap.xml').read_text(encoding='utf-8'))
     plans=(root/'planes.html').read_text(encoding='utf-8')
-    for value in ('2.000','7.000','19.000','$159.000','$429.000','$1.090.000','$79.500','$214.500','$545.000','después de la entrega','WhatsApp incluido'):
+    for value in ('$159.000','$479.000','$498.900','$1.215.000','Contrato anual','WhatsApp incluido'):
         if value not in plans: errors.append(f'planes.html: expected {value}')
     if args.base_url:
         for file in ('index.html','atlas.html','planes.html','implementacion.html','nosotros.html','web.html','demo.html','privacidad.html','terminos.html','eliminacion-datos.html','licencias/','assets/site.css','assets/site.js','assets/demo.js','assets/demo-fixes.css','assets/ajustes.css','sitemap.xml','robots.txt'):
