@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/demo-horas", "destination": "/demo.html" },
+    { "source": "/demo-cancelaciones", "destination": "/demo.html" }
+  ]
+}
