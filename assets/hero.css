@@ -1,0 +1,79 @@
+/* Hero de portada: "Cada conversación puede convertirse en una oportunidad".
+   El teléfono es una maqueta: mantiene su paleta oscura en ambos temas. */
+.hx{padding:56px 0 64px}
+.hx-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center}
+.hx-copy{display:flex;flex-direction:column;align-items:flex-start;max-width:600px}
+.hx-chip{display:inline-flex;align-items:center;gap:10px;margin:0;font:500 12px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--tx2)}
+.hx-copy h1{margin:22px 0 18px;font-family:var(--font-display);font-weight:400;font-size:clamp(40px,5vw,66px);line-height:1.02;letter-spacing:-.02em;color:var(--tx)}
+.hx-copy h1 em{font-style:italic;color:var(--br)}
+.hx-lead{margin:0 0 28px;font-size:18px;line-height:1.6;color:var(--tx2);max-width:34em}
+.hx-lead strong{color:var(--tx);font-weight:600}
+.hx .hero3-ctas .button{border-radius:12px}
+.hx-facts{list-style:none;margin:28px 0 0;padding:20px 0 0;border-top:1px solid var(--ln);display:flex;flex-wrap:wrap;gap:8px 22px;font:500 12px/1.4 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tx2)}
+.hx-facts li{display:flex;align-items:center;gap:8px}
+.hx-facts li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--br)}
+
+/* Ojo de ARGUS */
+.hx-eye{flex:none;overflow:visible}
+.hx-arc-top{stroke:var(--br);stroke-width:1.9}
+.hx-arc-bot{stroke:var(--tx3);stroke-width:1.9;stroke-dasharray:2 5}
+.hx-pupil{fill:var(--br)}
+.hx-halo{stroke:var(--br);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
+.hx-lid{transform-box:fill-box;transform-origin:center}
+.hx-head .hx-arc-top,.hx-head .hx-pupil{stroke:#D6A85C}.hx-head .hx-pupil{fill:#D6A85C}
+.hx-head .hx-arc-bot{stroke:#8E9AA8}.hx-head .hx-halo{stroke:#D6A85C}
+@media(prefers-reduced-motion:no-preference){
+  .hx-pupil{animation:hxLook 7.5s cubic-bezier(.19,1,.22,1) infinite}
+  .hx-lid{animation:hxBlink 5.2s ease-in-out infinite}
+  .hx-halo{animation:hxHalo 3.6s ease-out infinite}
+}
+@keyframes hxLook{0%,12%{transform:translateX(0)}25%,40%{transform:translateX(-6px)}55%,70%{transform:translateX(6px)}85%,100%{transform:translateX(0)}}
+@keyframes hxBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.06)}}
+@keyframes hxHalo{0%{opacity:.55;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.45)}}
+
+/* Demostración: teléfono + tarjeta, uno al lado del otro (nunca encima). */
+.hx-demo{margin:0;display:grid;grid-template-columns:300px 248px;grid-template-areas:"phone card" "note note";gap:16px 20px;align-items:end}
+.hx-phone{grid-area:phone;position:relative;height:560px;border-radius:40px;padding:12px;background:#0C0E10;box-shadow:0 40px 80px -40px rgba(12,14,16,.55);display:flex;flex-direction:column;overflow:hidden}
+.hx-notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:96px;height:20px;border-radius:0 0 12px 12px;background:#0C0E10;z-index:2}
+.hx-head{display:flex;align-items:center;gap:10px;padding:30px 12px 12px;border-radius:30px 30px 0 0;background:#14191F;color:#EDE7DB}
+.hx-head b{display:block;font-size:14px;font-weight:600}
+.hx-head small{display:block;font-size:12px;color:#8CC08A}
+.hx-msgs{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:14px 10px;background:#101418;border-radius:0 0 30px 30px;overflow:hidden}
+.hx-m{margin:0;max-width:86%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.42;color:#EDE7DB}
+.hx-m.u{align-self:flex-end;background:#1F3A33;border-bottom-right-radius:4px}
+.hx-m.a{align-self:flex-start;background:#1C232B;border-bottom-left-radius:4px}
+.hx-m .ok{color:#8CC08A;font-weight:600}
+.hx-typing{margin:0;align-self:flex-start;display:none;align-items:center;gap:4px;padding:9px 12px;border-radius:14px;background:#1C232B;font-size:12px;color:#B9C2CC}
+.hx-typing i{width:6px;height:6px;border-radius:50%;background:#8E9AA8;animation:hxDot 1s infinite}
+.hx-typing i:nth-child(2){animation-delay:.15s}.hx-typing i:nth-child(3){animation-delay:.3s}
+.hx-typing span{margin-left:6px}
+@keyframes hxDot{0%,60%,100%{opacity:.35}30%{opacity:1}}
+.hx-card{grid-area:card;margin-bottom:48px;padding:22px;border-radius:20px;background:var(--s1);border:1px solid var(--ln2);box-shadow:0 30px 60px -40px rgba(12,14,16,.45);display:flex;flex-direction:column;gap:14px}
+.hx-kick{font:500 11px/1.4 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--br)}
+.hx-title{font:400 22px/1.15 var(--font-display);color:var(--tx)}
+.hx-card dl{margin:0;display:flex;flex-direction:column;gap:6px;padding:12px 0;border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.hx-card dl div{display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.hx-card dt{color:var(--tx2)}.hx-card dd{margin:0;color:var(--tx);font-weight:600}
+.hx-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.hx-card li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--tx)}
+.hx-card li small{display:block;font:500 11px/1.5 var(--font-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--tx2)}
+.hx-card .ck{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;color:var(--gr);border:1px solid var(--gr)}
+.hx-note{grid-area:note;font:500 12px/1.4 var(--font-mono);color:var(--tx2)}
+
+/* Estados que maneja hero.js */
+.hx.is-anim .hx-m{display:none}
+.hx.is-anim .hx-card{visibility:hidden;opacity:0}
+.hx.is-anim .hx-m.show{display:block;animation:hxIn .45s cubic-bezier(.19,1,.22,1) both}
+.hx.is-anim .hx-card.show{visibility:visible;opacity:1;animation:hxIn .45s cubic-bezier(.19,1,.22,1) both}
+.hx.is-anim .hx-typing.show{display:inline-flex}
+@keyframes hxIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media(max-width:1100px){.hx-demo{grid-template-columns:280px 230px}}
+@media(max-width:960px){
+  .hx-row{grid-template-columns:1fr}
+  .hx-demo{grid-template-columns:minmax(0,320px);grid-template-areas:"phone" "card" "note";justify-content:center}
+  .hx-card{margin-bottom:0}
+  .hx-note{text-align:center}
+}
+@media(max-width:600px){.hx{padding:28px 0 40px}.hx-phone{height:540px}}
+.hx .hx-copy>*,.hx .hx-copy .hero3-ctas,.hx .hx-copy .hx-facts{order:0}
