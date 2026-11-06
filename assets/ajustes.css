@@ -630,3 +630,21 @@
 /* Botón "Coordinar demo" del menú: mismo tamaño en todas las páginas (Demo traía otro relleno). */
 @media(min-width:681px){.masthead #main-nav>.button{min-height:42px;padding:9px 16px;font-size:14px}}
 @media(max-width:680px){.masthead #main-nav>.button{min-height:52px;padding:12px 18px;font-size:16px}}
+
+/* Calculadora: casillas de alto fijo; el nombre del plan siempre en una línea. */
+.calc-out>div{display:flex;flex-direction:column;gap:4px;min-height:128px}
+.calc-out b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.calc-out small{font-size:13px;line-height:1.4;min-height:2.8em;color:var(--tx2)}
+
+/* "Lo que cambia": franja Con ATLAS distinguible en ambos temas y leyenda con los mismos colores. */
+:root{--chg-band:color-mix(in srgb,var(--br) 16%,var(--s1));--chg-band-tx:var(--tx);--chg-band-acc:var(--br);--chg-band-bd:color-mix(in srgb,var(--br) 45%,transparent)}
+[data-theme="light"]{--chg-band:var(--band);--chg-band-tx:var(--band-tx);--chg-band-acc:var(--band-acc);--chg-band-bd:var(--band)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]):not([data-theme="light"]){--chg-band:var(--band);--chg-band-tx:var(--band-tx);--chg-band-acc:var(--band-acc);--chg-band-bd:var(--band)}}
+.chg-atlas{background:var(--chg-band);color:var(--chg-band-tx);border-top:1px solid var(--chg-band-bd)}
+.chg-atlas p{color:var(--chg-band-tx)}
+.chg-atlas svg{stroke:var(--chg-band-acc)}
+.chg-atlas small{color:var(--chg-band-acc)}
+.chg-legend .k-hoy{background:var(--s1);border:1px solid var(--ln2)}
+.chg-legend .k-atlas{background:var(--chg-band);border:1px solid var(--chg-band-bd)}
+.calc-field span b{white-space:nowrap}
+@media(max-width:600px){.calc-field span{min-height:2.9em;align-items:flex-start;gap:12px}}
