@@ -588,3 +588,7 @@
     .team-card .team-contact{margin:0;align-self:start}
   }
 }
+
+/* Móvil: el carrusel "Lo que cambia" no debe ensanchar la página (texto oculto contenido en su tarjeta). */
+.chg-card{position:relative}
+@media(max-width:767px){.chg-grid{width:100vw;margin-left:calc(50% - 50vw);margin-right:0;box-sizing:border-box}}
