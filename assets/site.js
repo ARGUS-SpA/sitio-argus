@@ -12,8 +12,20 @@
   }
   const button = document.querySelector('.menu-toggle');
   const menu = document.getElementById('main-nav');
-  function closeMenu() { if (!button || !menu) return; menu.classList.remove('open'); button.setAttribute('aria-expanded','false'); }
-  button?.addEventListener('click', () => { const open = button.getAttribute('aria-expanded') !== 'true'; button.setAttribute('aria-expanded',String(open)); menu.classList.toggle('open',open); });
+  const masthead = document.querySelector('.masthead');
+  const setMh = () => { if (masthead) document.documentElement.style.setProperty('--mh', masthead.getBoundingClientRect().height + 'px'); };
+  setMh(); window.addEventListener('resize', setMh);
+  function closeMenu() { if (!button || !menu) return; menu.classList.remove('open'); button.setAttribute('aria-expanded','false'); document.documentElement.classList.remove('menu-open'); }
+  button?.addEventListener('click', () => { const open = button.getAttribute('aria-expanded') !== 'true'; setMh(); button.setAttribute('aria-expanded',String(open)); menu.classList.toggle('open',open); document.documentElement.classList.toggle('menu-open',open); });
+  // Home scroll-spy: Producto and Rubros are sections of the home page; mark them while in view.
+  const spyLinks = menu ? [...menu.querySelectorAll('a[data-spy]')] : [];
+  if (spyLinks.length && 'IntersectionObserver' in window) {
+    const targets = spyLinks.map(a => document.getElementById(a.dataset.spy)).filter(Boolean);
+    const inView = new Set();
+    const mark = () => { const current = targets.find(t => inView.has(t)); spyLinks.forEach(a => { if (current && a.dataset.spy === current.id) a.setAttribute('aria-current','location'); else a.removeAttribute('aria-current'); }); };
+    const spy = new IntersectionObserver(entries => { entries.forEach(e => e.isIntersecting ? inView.add(e.target) : inView.delete(e.target)); mark(); }, {rootMargin:'-40% 0px -55% 0px'});
+    targets.forEach(t => spy.observe(t));
+  }
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && menu?.classList.contains('open')) { closeMenu(); button.focus(); } });
   menu?.querySelectorAll('a').forEach(link => link.addEventListener('click',closeMenu));
   document.addEventListener('click', e => { if (menu?.classList.contains('open') && !e.target.closest('.masthead')) closeMenu(); });
@@ -38,7 +50,7 @@
   }
   // Mobile call-to-action bar: appears after the first screen, hides near contact and footer.
   if (!document.body.classList.contains('demo-page')) {
-    const wa = 'https://wa.me/56993477920?text=Hola%2C%20me%20gustar%C3%ADa%20conocer%20ATLAS%20y%20coordinar%20una%20demo.';
+    const wa = 'https://hablemos.argus.cl';
     const bar = document.createElement('div'); bar.className = 'mobile-cta'; bar.setAttribute('aria-label', 'Acciones rápidas');
     bar.innerHTML = '<a class="button" href="' + wa + '" target="_blank" rel="noopener" data-contact="whatsapp" data-placement="barra_movil">Coordinar demo</a><a class="button secondary" href="demo.html">Ver la demo</a>';
     document.body.appendChild(bar); document.body.classList.add('has-mobile-cta');
@@ -47,6 +59,17 @@
     const update = () => { bar.classList.toggle('show', window.scrollY > 520 && visible.size === 0); };
     if ('IntersectionObserver' in window) { const io = new IntersectionObserver(es => { es.forEach(en => en.isIntersecting ? visible.add(en.target) : visible.delete(en.target)); update(); }); blockers.forEach(b => io.observe(b)); }
     window.addEventListener('scroll', update, {passive: true}); update();
+  }
+
+  // "Lo que cambia" carousel (mobile): dots and arrows follow horizontal scroll.
+  const chg = document.querySelector('.chg-grid');
+  if (chg) {
+    const cards = [...chg.children], dots = [...document.querySelectorAll('.chg-dots i')];
+    const at = () => Math.round(chg.scrollLeft / ((cards[1]?.offsetLeft || 1) - (cards[0]?.offsetLeft || 0) || 1));
+    const go = i => { const n = (i + cards.length) % cards.length; chg.scrollTo({left: cards[n].offsetLeft - cards[0].offsetLeft, behavior: 'smooth'}); };
+    chg.addEventListener('scroll', () => { const i = at(); dots.forEach((d, k) => d.classList.toggle('on', k === i)); }, {passive: true});
+    document.querySelector('.chg-prev')?.addEventListener('click', () => go(at() - 1));
+    document.querySelector('.chg-next')?.addEventListener('click', () => go(at() + 1));
   }
 
   if (/\/(?:index\.html)?$/.test(location.pathname)) {
