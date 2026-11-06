@@ -619,3 +619,10 @@
     .chg-grid .chg-card:nth-child(n+3){margin-top:0}
   }
 }
+
+/* Bloques de dos columnas con recuadro (feature-section): mismos tamaños en ambos lados. */
+.feature-section .split>div>.eyebrow,.feature-section .callout .eyebrow{font-size:12px;letter-spacing:.08em;margin-bottom:18px}
+.feature-section .split>div>h2,.feature-section .callout h3{font-family:var(--font-display);font-weight:400;font-size:clamp(32px,3vw,42px);line-height:1.1;letter-spacing:-.02em;margin:0 0 22px}
+.feature-section .split>div>p,.feature-section .callout p,.feature-section .callout p.small{font-size:17px;line-height:1.65}
+.feature-section .callout p.small{color:var(--tx3)}
+.feature-section .callout li{font-size:16px;line-height:1.55}
