@@ -45,12 +45,16 @@
       const b = c.bandeja;
       $('tourView').innerHTML = '<div class="tour-vh"><h2>Bandeja</h2><span>Por atender · 1</span></div><article class="tour-inbox"><div><b>' + esc(b.who) + '</b><small>' + esc(b.meta) + '</small></div><p><b>Resumen del agente:</b> ' + esc(b.res) + '</p><div class="acts"><span class="p">Tomar conversación</span><span>Agendar hora</span><span>Devolver al agente</span></div></article><p class="tour-fine">Fuera del horario de su equipo, la conversación queda pendiente en la bandeja.</p>';
     } else {
-      const rows = BASE.map(([time, who, what, pill]) => {
+      const allRows = BASE.map(([time, who, what, pill]) => {
         const hit = time === c.hl;
         if (hit) { who = c.hlWho; what = c.hlWhat; pill = c.hlPill; }
         const free = who === 'Disponible';
         return '<li class="' + (hit ? 'hit t-' + c.tone : free ? 'free' : '') + '"><time>' + time + '</time><span><b>' + esc(who) + '</b><small>' + esc(what) + '</small></span><em>' + esc(pill) + '</em></li>';
-      }).join('');
+      });
+      // Compact panel: show at most 4 rows, keeping the affected row in view.
+      const hitAt = Math.max(0, BASE.findIndex(([time]) => time === c.hl));
+      const startAt = Math.min(Math.max(0, hitAt - 1), Math.max(0, BASE.length - 4));
+      const rows = allRows.slice(startAt, startAt + 4).join('');
       $('tourView').innerHTML = '<div class="tour-vh"><h2>' + c.day + '</h2><span>' + esc(PF.personas) + '</span></div><ul class="tour-rows">' + rows + '</ul>';
     }
   }

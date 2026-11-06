@@ -124,3 +124,38 @@
 .tour-progress i{display:block;height:100%;width:20%;background:#E0B77A;transition:width .6s var(--ease)}
 .tour.touring .tour-progress{opacity:1}
 .tour-cta.lit{border-color:var(--br);box-shadow:0 0 0 4px color-mix(in srgb,var(--br) 18%,transparent);transition:box-shadow .4s,border-color .4s}
+
+/* Ronda 2 · demo compacta: pasos a la izquierda, teléfono y panel a la derecha (cabe en una pantalla). */
+.tour-story{background:var(--band);color:var(--band-tx)}
+.tour-num{color:var(--band-acc)}
+@media(min-width:1024px){
+  .tour{padding-block:36px 48px}
+  .tour-wrap{display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:24px;row-gap:18px;align-items:start}
+  .tour-head{grid-column:1/-1;grid-row:1}
+  .tour-wrap>.rubro-switch{grid-column:1/-1;grid-row:2;margin:0}
+  .tour-scns{grid-column:1;grid-row:3;grid-template-columns:1fr;gap:6px}
+  .tour-scn{padding:10px 14px;gap:2px;border-radius:12px}
+  .tour-scn b{font-size:15px}
+  .tour-scn .h{font-size:13px}
+  .tour-scn .n:after{display:none}
+  .tour-scn[aria-selected="true"]{box-shadow:none;border-color:var(--br)}
+  .tour-story{display:none}
+  .tour-stage{grid-column:2;grid-row:3;grid-template-columns:280px minmax(0,1fr);gap:20px}
+  .tour-phone{width:280px;border-radius:34px;padding:8px}
+  .tour-screen{height:520px;border-radius:27px}
+  .tour-wa{padding:16px 12px 10px}
+  .tour-cap{display:none}
+  .tour-panel{border-radius:20px}
+  .tour-body{grid-template-columns:140px minmax(0,1fr);min-height:0;height:498px}
+  .tour-nav{padding:10px 8px}
+  .tour-nav span{min-height:36px;font-size:13px}
+  .tour-content{padding:16px 18px;gap:12px;overflow:hidden}
+  .tour-event{padding:12px 14px;border-radius:12px}
+  .tour-vh h2{font-size:22px}
+  .tour-rows li{padding:8px 12px;border-radius:10px}
+  .tour-cta,.tour-note{grid-column:1/-1}
+}
+@media(max-width:1023px){
+  .tour-scns{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;padding-bottom:4px}
+  .tour-scn{flex:0 0 200px;scroll-snap-align:start}
+}
