@@ -204,3 +204,52 @@
  .footer-grid>div>a:not(.brand),.footer-bottom a{display:inline-flex;align-items:center;min-height:40px}
 }
 @media(prefers-reduced-motion:reduce){.mobile-cta{transition:none}}
+
+/* Rediseño multirubro (brief web ARGUS) */
+.h3-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;justify-content:center}
+.h3-tabs button{font:500 12px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:#5B6470;background:transparent;border:1px solid var(--line);border-radius:999px;padding:8px 12px;cursor:pointer}
+.h3-tabs button[aria-selected="true"]{color:#0E1A26;border-color:#8A6A2E}
+.h3-tabs button:focus-visible,.task-link:focus-visible,.video-points li:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.h3-day{display:block;font:500 11px/1.4 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5B6470;text-align:center;margin:6px 0 10px}
+.h3-msgs b{display:block;font-size:11px;color:#8A6A2E;margin-bottom:2px}
+.hero3-stage figcaption b{color:#8A6A2E}
+.video-demo-wrap{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:32px;align-items:center;margin:0 0 40px}
+.video-demo{margin:0}
+.video-demo video{width:100%;height:auto;max-width:360px;border-radius:22px;background:#000;display:block}
+.video-demo figcaption{font:500 12px/1.5 var(--font-mono);color:#5B6470;margin-top:10px}
+.video-points{list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.video-points li{font-family:var(--font-display);font-size:clamp(22px,2.6vw,30px);color:#0E1A26}
+.plans-table{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#FBF8F2}
+.pt-row{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;border-top:1px solid var(--line)}
+.pt-row:first-child{border-top:0}
+.pt-row>div{padding:16px 18px;font-size:15px;line-height:1.5;color:#0E1A26}
+.pt-row>[role=rowheader]{font:500 12px/1.5 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:#5B6470}
+.pt-head>div{padding-top:22px;padding-bottom:22px}
+.pt-head small{display:block;color:#8A6A2E;font:500 11px/1.4 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.pt-rec{background:color-mix(in srgb,var(--gold) 9%,transparent)}
+.pt-cta .button{width:100%;justify-content:center}
+.extras-title{margin:40px 0 14px;font-family:var(--font-display);font-weight:400;font-size:26px;color:#0E1A26}
+.extras-list{list-style:none;padding:0;margin:0 0 20px;border-top:1px solid var(--line)}
+.extras-list li{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);color:#0E1A26}
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.team-card{border:1px solid var(--line);border-radius:18px;padding:28px;background:#FBF8F2;display:flex;flex-direction:column;gap:12px}
+.team-card h3{margin:0;font-family:var(--font-display);font-weight:400;font-size:28px;color:#0E1A26}
+.team-role{font:500 12px/1.5 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:#8A6A2E;margin:0}
+.team-edu{font-size:14px;color:#5B6470;margin:0}
+.team-contact{list-style:none;padding:0;margin:auto 0 0;display:grid;gap:6px}
+.team-contact a{color:#0E1A26}
+.extras-list span{color:#5B6470}
+@media (max-width:820px){
+  .video-demo-wrap{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .video-points{justify-items:center}
+  .team-grid{grid-template-columns:1fr}
+  .plans-table{overflow-x:auto}
+  .pt-row{min-width:640px}
+}
+.hero3-stage .h3-tabs{position:absolute;top:0;left:0;right:0;margin:0;justify-content:flex-start;z-index:2}
+.hero3-stage .h3-phone{top:104px;height:470px;width:272px}
+.hero3-stage .h3-phone{left:0}
+@media (max-width:1100px){.hero3-stage .h3-phone{left:50%;transform:translateX(-50%)}}
+@media (max-width:820px){.hero3-stage .h3-tabs{position:relative;margin:0 0 12px;justify-content:center}.hero3-stage .h3-phone{position:relative;top:auto;left:auto;transform:none;margin:0 auto;height:440px;width:250px}.hero3-stage{height:auto}}
+.h3-tabs button{color:#5B6470}
+.h3-tabs button[aria-selected="true"]{color:#0E1A26;background:rgba(201,162,92,.14)}
