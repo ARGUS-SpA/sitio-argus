@@ -603,3 +603,19 @@
     .plan-card .button{align-self:end}
   }
 }
+
+/* "Lo que cambia": título, texto de hoy y franja Con ATLAS a la misma altura en todas las tarjetas. */
+@supports (grid-template-rows:subgrid){
+  .chg-grid{row-gap:0}
+  .chg-card{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}
+  .chg-top{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:14px;align-content:start}
+  .chg-top h3{align-self:start}
+  .chg-hoy{align-self:start}
+  .chg-atlas{margin-top:0}
+  .chg-grid .chg-card:nth-child(n+3){margin-top:20px}
+  @media(max-width:767px){
+    .chg-grid{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-template-rows:repeat(3,auto);grid-auto-columns:min(312px,82vw);column-gap:12px}
+    .chg-card{flex:none}
+    .chg-grid .chg-card:nth-child(n+3){margin-top:0}
+  }
+}
