@@ -22,7 +22,6 @@
     { n: 'Empresa', atenciones: 3200, mes: 959000 }
   ];
   function volumen(n) {
-    if (n <= 400) return 179000;               // plan mínimo de 400 atenciones
     if (n <= 800) return 299000;
     if (n <= 1600) return 299000 + 300 * (n - 800);
     if (n <= 3200) return 539000 + 262.5 * (n - 1600);
@@ -52,15 +51,14 @@
     $('c-ini').textContent = clp(ini);
     $('c-unit').textContent = clp(vol / n);
 
-    // Plan sugerido: si el volumen queda a menos de 10 % de un plan estándar y no hay extras.
-    const cerca = PLANES.find(p => Math.abs(n - p.atenciones) / p.atenciones <= 0.10);
-    const solo = ni + nc === 0 && !wOn;
-    if (cerca && solo) {
-      $('c-plan').textContent = cerca.n + (cerca.rec ? ' · recomendado' : '');
-      $('c-plan-d').textContent = 'Su volumen está cerca de este plan estándar: le conviene el plan publicado, con ' + clp(cerca.mes) + ' al mes.';
+    // Plan sugerido: el plan más chico que cubre el volumen. Cotización a medida solo sobre el máximo del último plan.
+    const sug = PLANES.find(p => n <= p.atenciones);
+    if (sug) {
+      $('c-plan').textContent = sug.n + (sug.rec ? ' · recomendado' : '');
+      $('c-plan-d').textContent = 'Incluye hasta ' + sug.atenciones.toLocaleString('es-CL') + ' atenciones al mes, por ' + clp(sug.mes) + ' + IVA. Los adicionales se suman aparte.';
     } else {
       $('c-plan').textContent = 'Cotización a medida';
-      $('c-plan-d').textContent = 'Según el volumen y la configuración que elija. Conversemos la propuesta.';
+      $('c-plan-d').textContent = 'Su volumen supera el plan Empresa. Conversemos la propuesta.';
     }
 
     $('c-cta').href = 'https://hablemos.argus.cl?texto=' + encodeURIComponent(
