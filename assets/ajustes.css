@@ -648,3 +648,32 @@
 .chg-legend .k-atlas{background:var(--chg-band);border:1px solid var(--chg-band-bd)}
 .calc-field span b{white-space:nowrap}
 @media(max-width:600px){.calc-field span{min-height:2.9em;align-items:flex-start;gap:12px}}
+
+/* Calculadora interactiva y planes por atención */
+.calc2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.calc-inputs,.calc-results{border:1px solid var(--ln2);border-radius:20px;padding:26px;background:var(--s1);color:var(--tx)}
+.calc-add{border:0;padding:0;margin:12px 0 0;min-width:0}
+.calc-add legend{font:500 12px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--tx2);margin-bottom:6px}
+.calc-check{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--ln2);color:var(--tx);font-size:15px}
+.calc-check small{display:block;color:var(--tx2);font-size:12.5px;margin-top:2px}
+.calc-check input[type=number]{width:72px;padding:6px 8px;border:1px solid var(--ln2);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.calc-check input[type=checkbox]{width:20px;height:20px;accent-color:var(--br);flex:none}
+.calc-hours{padding:4px 0 16px;border-bottom:1px solid var(--ln2)}
+.calc-hours span{display:block;font:500 11px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--tx2)}
+.calc-hours b{display:block;font-family:var(--font-display);font-weight:400;font-size:56px;line-height:1.05;color:var(--tx);margin:4px 0}
+.calc-hours small{color:var(--tx2)}
+.calc-out2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.calc-out2>div{background:var(--bg);border:1px solid var(--ln2);border-radius:14px;padding:14px}
+.calc-out2 span{display:block;font:500 10.5px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--tx2)}
+.calc-out2 b{display:block;font-family:var(--font-display);font-weight:400;font-size:24px;color:var(--tx);margin-top:4px}
+.calc-plan-sug{margin:6px 0 16px}
+.calc-plan-sug span{display:block;font:500 11px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--tx2)}
+.calc-plan-sug b{display:block;font-family:var(--font-display);font-weight:400;font-size:30px;color:var(--tx);margin-top:4px}
+.calc-plan-sug p{color:var(--tx2);margin:6px 0 0;font-size:15px}
+.calc-results .button{margin-bottom:12px}
+.plan-card h3{font-family:var(--font-display);font-weight:400;font-size:44px;line-height:1;color:var(--tx);margin:0}
+.plan-card h3 small{font:400 14px/1.4 var(--font-sans);color:var(--tx2);margin-left:4px}
+.pl-extras,.pl-explain{margin-top:40px}
+.pl-extras h3,.pl-explain h3{font-family:var(--font-display);font-weight:400;font-size:26px;color:var(--tx);margin:0 0 12px}
+.pl-explain p{max-width:70ch;color:var(--tx2)}
+@media (max-width:900px){.calc2{grid-template-columns:1fr}.calc-out2{grid-template-columns:1fr}}
