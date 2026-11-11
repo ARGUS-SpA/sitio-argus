@@ -22,7 +22,6 @@
     { n: 'Empresa', atenciones: 3200, mes: 959000 }
   ];
   function volumen(n) {
-    if (n <= 400) return 179000;               // plan mínimo de 400 atenciones
     if (n <= 800) return 299000;
     if (n <= 1600) return 299000 + 300 * (n - 800);
     if (n <= 3200) return 539000 + 262.5 * (n - 1600);
