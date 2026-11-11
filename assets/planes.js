@@ -1,80 +1,71 @@
-/* Planes: selector móvil de plan y configurador "Arme su plan". Valores en CLP netos + IVA. */
+/* Planes y calculadora de ATLAS. Valores en CLP netos + IVA.
+   Atención = cliente atendido en 24 h, con hasta 12 respuestas. */
 (() => {
   'use strict';
-  const PLANES = {
-    A: { nombre: 'Asistente', mes: 159000, inicial: 300000, descontable: 300000 },
-    B: { nombre: 'Conectado', mes: 479000, inicial: 900000, descontable: 900000 },
-    C: { nombre: 'Conectado + web', mes: 498900, inicial: 1215000, descontable: 900000 } // web y dominio sin descuento
-  };
-  const EXTRAS = { campanas: { mes: 190000, inicial: 150000 }, webPlanA: { mes: 19900, inicial: 315000 } };
   const clp = n => '$' + Math.round(n).toLocaleString('es-CL');
   const $ = id => document.getElementById(id);
 
-  // Selector de plan en móvil (una tarjeta visible) y botón fijo inferior.
+  // Selector de plan en móvil (una tarjeta visible a la vez).
   const seg = [...document.querySelectorAll('.plan-seg [role=tab]')];
   const cards = [...document.querySelectorAll('.plan-card')];
-  const syncMobileCta = card => {
-    const bar = document.querySelector('.mobile-cta .button:not(.secondary)');
-    const link = card?.querySelector('a.button');
-    if (bar && link) { bar.textContent = link.textContent; bar.href = link.href; }
-  };
   const pick = i => {
     seg.forEach((b, j) => b.setAttribute('aria-selected', String(j === i)));
     cards.forEach((c, j) => c.classList.toggle('on', j === i));
-    syncMobileCta(cards[i]);
   };
   seg.forEach((b, i) => b.addEventListener('click', () => pick(i)));
-  if (seg.length) window.addEventListener('load', () => pick(seg.findIndex(b => b.getAttribute('aria-selected') === 'true')));
+  if (seg.length) pick(1);
 
-  // Configurador.
-  const root = $('arme');
-  if (!root) return;
-  const state = { plan: 'B', camp: false, web: false, anual: true };
-  const radios = [...root.querySelectorAll('[role=radio]')];
-  const sw = { camp: $('cfg-camp'), web: $('cfg-web'), anual: $('cfg-anual') };
-
-  function render() {
-    const p = PLANES[state.plan];
-    const webOn = state.plan === 'C' || (state.plan === 'A' && state.web);
-    radios.forEach(r => r.setAttribute('aria-checked', String(r.dataset.plan === state.plan)));
-    sw.camp.setAttribute('aria-checked', String(state.camp));
-    sw.web.setAttribute('aria-checked', String(webOn));
-    sw.web.setAttribute('aria-disabled', String(state.plan === 'C'));
-    sw.anual.setAttribute('aria-checked', String(state.anual));
-    $('cfg-web-p').textContent = state.plan === 'A' ? '+ $290.000 y dominio $25.000 · $19.900/mes'
-      : state.plan === 'C' ? 'Incluida en el plan C' : 'Para sumar la web, elija el plan C';
-
-    let mes = p.mes, ini = p.inicial;
-    if (state.plan === 'A' && state.web) { mes += EXTRAS.webPlanA.mes; ini += EXTRAS.webPlanA.inicial; }
-    if (state.camp) { mes += EXTRAS.campanas.mes; ini += EXTRAS.campanas.inicial; }
-    const ahorro = state.anual ? p.descontable * 0.5 : 0;
-    ini -= ahorro;
-
-    const partes = ['Plan ' + state.plan + ' · ' + p.nombre];
-    if (state.plan === 'A' && state.web) partes.push('web');
-    if (state.camp) partes.push('campañas');
-    partes.push(state.anual ? 'contrato anual' : 'contrato mensual');
-    const resumen = partes.join(' + ');
-    $('cfg-res').textContent = resumen;
-    $('cfg-mes').textContent = clp(mes);
-    $('cfg-ini').textContent = clp(ini);
-    $('cfg-save').textContent = ahorro ? 'Ahorra ' + clp(ahorro) + ' con el contrato anual' : '';
-    $('cfg-cta').href = 'https://hablemos.argus.cl?texto=' + encodeURIComponent('Hola, quiero conversar sobre: ' + resumen + ' (' + clp(mes) + '/mes, pago inicial ' + clp(ini) + ', + IVA)');
+  // Tramos de volumen: cada tramo cobra solo lo que cae dentro de él.
+  const PLANES = [
+    { n: 'Emprendimiento', atenciones: 800, mes: 299000 },
+    { n: 'Pyme', atenciones: 1600, mes: 539000, rec: true },
+    { n: 'Empresa', atenciones: 3200, mes: 959000 }
+  ];
+  function volumen(n) {
+    if (n <= 400) return 179000;               // plan mínimo de 400 atenciones
+    if (n <= 800) return 299000;
+    if (n <= 1600) return 299000 + 300 * (n - 800);
+    if (n <= 3200) return 539000 + 262.5 * (n - 1600);
+    return 959000 + 230 * (n - 3200);
   }
+  // Redondeo hacia arriba para que el valor termine en $9.000.
+  const redondear = x => Math.ceil((x + 1000) / 10000) * 10000 - 1000;
 
-  radios.forEach(r => r.addEventListener('click', () => { state.plan = r.dataset.plan; if (state.plan !== 'A') state.web = false; render(); }));
-  root.querySelector('[role=radiogroup]').addEventListener('keydown', e => {
-    const i = radios.indexOf(document.activeElement); if (i < 0) return;
-    const n = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? i - 1 : null;
-    if (n === null) return; e.preventDefault();
-    const r = radios[(n + radios.length) % radios.length]; r.focus(); r.click();
-  });
-  sw.camp.addEventListener('click', () => { state.camp = !state.camp; render(); });
-  sw.anual.addEventListener('click', () => { state.anual = !state.anual; render(); });
-  sw.web.addEventListener('click', () => {
-    if (state.plan === 'A') state.web = !state.web;
-    else if (state.plan === 'B') state.plan = 'C';
-    render();
-  });
-  render();
+  const conv = $('c-att'), min = $('c-min'), horas = $('c-horas'), integ = $('c-integ'),
+        web = $('c-web'), camp = $('c-camp'), num = $('c-num');
+  if (!conv) return;
+
+  function calc() {
+    const n = +conv.value, m = +min.value;
+    const nh = Math.max(0, +horas.value || 0), ni = Math.max(0, +integ.value || 0),
+          nc = Math.max(0, +camp.value || 0), nn = Math.max(0, +num.value || 0);
+    const wOn = web.checked;
+
+    const vol = volumen(n);
+    const mes = vol + nh * 35000 + ni * 50000 + (wOn ? 19900 : 0) + nc * 149000 + nn * 49000;
+    const ini = 300000 + ni * 600000 + (wOn ? 315000 : 0);
+
+    $('c-att-v').textContent = n.toLocaleString('es-CL');
+    $('c-min-v').textContent = m;
+    $('c-h').textContent = Math.round(n * m / 60).toLocaleString('es-CL');
+    $('c-mes').textContent = clp(redondear(mes));
+    $('c-ini').textContent = clp(ini);
+    $('c-unit').textContent = clp(vol / n);
+
+    // Plan sugerido: si el volumen queda a menos de 10 % de un plan estándar y no hay extras.
+    const cerca = PLANES.find(p => Math.abs(n - p.atenciones) / p.atenciones <= 0.10);
+    const solo = nh + ni + nc + nn === 0 && !wOn;
+    if (cerca && solo) {
+      $('c-plan').textContent = cerca.n + (cerca.rec ? ' · recomendado' : '');
+      $('c-plan-d').textContent = 'Su volumen está cerca de este plan estándar: le conviene el plan publicado, con ' + clp(cerca.mes) + ' al mes.';
+    } else {
+      $('c-plan').textContent = 'Cotización a medida';
+      $('c-plan-d').textContent = 'Según el volumen y la configuración que elija. Conversemos la propuesta.';
+    }
+
+    $('c-cta').href = 'https://hablemos.argus.cl?texto=' + encodeURIComponent(
+      'Hola, quiero conversar sobre ' + n + ' atenciones al mes, ' + clp(redondear(mes)) + ' al mes + IVA');
+  }
+  [conv, min, horas, integ, camp, num, web].forEach(el => el.addEventListener('input', calc));
+  calc();
 })();
