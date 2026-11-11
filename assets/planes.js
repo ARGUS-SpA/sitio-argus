@@ -31,18 +31,18 @@
   // Redondeo hacia arriba para que el valor termine en $9.000.
   const redondear = x => Math.ceil((x + 1000) / 10000) * 10000 - 1000;
 
-  const conv = $('c-att'), min = $('c-min'), horas = $('c-horas'), integ = $('c-integ'),
+  const conv = $('c-att'), min = $('c-min'), integ = $('c-integ'),
         web = $('c-web'), camp = $('c-camp'), num = $('c-num');
   if (!conv) return;
 
   function calc() {
     const n = +conv.value, m = +min.value;
-    const nh = Math.max(0, +horas.value || 0), ni = Math.max(0, +integ.value || 0),
+    const ni = Math.max(0, +integ.value || 0),
           nc = Math.max(0, +camp.value || 0), nn = Math.max(0, +num.value || 0);
     const wOn = web.checked;
 
     const vol = volumen(n);
-    const mes = vol + nh * 35000 + ni * 50000 + (wOn ? 19900 : 0) + nc * 149000 + nn * 49000;
+    const mes = vol + ni * 50000 + (wOn ? 19900 : 0) + nc * 149000 + nn * 49000;
     const ini = 300000 + ni * 600000 + (wOn ? 315000 : 0);
 
     $('c-att-v').textContent = n.toLocaleString('es-CL');
@@ -54,7 +54,7 @@
 
     // Plan sugerido: si el volumen queda a menos de 10 % de un plan estándar y no hay extras.
     const cerca = PLANES.find(p => Math.abs(n - p.atenciones) / p.atenciones <= 0.10);
-    const solo = nh + ni + nc + nn === 0 && !wOn;
+    const solo = ni + nc + nn === 0 && !wOn;
     if (cerca && solo) {
       $('c-plan').textContent = cerca.n + (cerca.rec ? ' · recomendado' : '');
       $('c-plan-d').textContent = 'Su volumen está cerca de este plan estándar: le conviene el plan publicado, con ' + clp(cerca.mes) + ' al mes.';
@@ -66,6 +66,6 @@
     $('c-cta').href = 'https://hablemos.argus.cl?texto=' + encodeURIComponent(
       'Hola, quiero conversar sobre ' + n + ' atenciones al mes, ' + clp(redondear(mes)) + ' al mes + IVA');
   }
-  [conv, min, horas, integ, camp, num, web].forEach(el => el.addEventListener('input', calc));
+  [conv, min, integ, camp, num, web].forEach(el => el.addEventListener('input', calc));
   calc();
 })();
