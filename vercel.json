@@ -2,5 +2,11 @@
   "rewrites": [
     { "source": "/demo-horas", "destination": "/demo.html" },
     { "source": "/demo-cancelaciones", "destination": "/demo.html" }
+  ],
+  "headers": [
+    {
+      "source": "/licencias/(.+\\.txt)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
   ]
 }
