@@ -320,7 +320,8 @@
 .plan-seg{display:none;gap:6px;margin:0 0 18px;justify-content:center}
 .plan-seg button{font:500 12px/1 var(--font-mono);text-transform:uppercase;letter-spacing:.05em;color:var(--tx2);background:transparent;border:1px solid var(--ln2);border-radius:999px;padding:10px 12px;cursor:pointer}
 .plan-seg button[aria-selected="true"]{color:var(--tx);border-color:var(--br);background:color-mix(in srgb,var(--br) 16%,transparent)}
-.plan-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.plan-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media(min-width:901px) and (max-width:1180px){.plan-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .plan-card{border:1px solid var(--ln2);border-radius:20px;padding:26px;background:var(--s1);color:var(--tx);display:flex;flex-direction:column;gap:12px;position:relative}
 .plan-card.on{border-color:var(--br);box-shadow:0 26px 50px -36px rgba(14,26,38,.5)}
 .plan-card .eyebrow{color:var(--br)}

@@ -5,22 +5,26 @@
   if (!ad) return;
   const clp = n => '$' + Math.round(n).toLocaleString('es-CL');
   const redondear = x => Math.ceil((x + 1000) / 10000) * 10000 - 1000;
-  const PLANES = [299000, 539000, 959000];
-  const IMPL = 300000, WEB_INI = 315000, INTEG_INI = 600000;
-  const st = { web: false, integ: 0, camp: 0, };
+  // Orden de tarjetas: Inicio, Emprendimiento, Pyme, Empresa.
+  const PLANES = [149000, 279000, 499000, 899000];
+  const IMPL = [150000, 300000, 300000, 300000];
+  const WEB_MES = 19900, WEB_INI = 190000;
+  const STD_MES = 25000, STD_INI = 250000;
+  const MED_MES = 50000, MED_INI = 600000;
+  const st = { web: false, std: 0, medida: 0 };
   const web = document.getElementById('ad-web');
-  const max = { integ: 10, camp: 50 };
+  const max = { std: 10, medida: 10 };
 
   function render() {
-    const addMes = (st.web ? 19900 : 0) + st.integ * 50000 + st.camp * 149000;
-    const addIni = (st.web ? WEB_INI : 0) + st.integ * INTEG_INI;
+    const addMes = (st.web ? WEB_MES : 0) + st.std * STD_MES + st.medida * MED_MES;
+    const addIni = (st.web ? WEB_INI : 0) + st.std * STD_INI + st.medida * MED_INI;
     PLANES.forEach((base, i) => {
       const m = document.querySelector('[data-m="' + i + '"]');
       const n = document.querySelector('[data-i="' + i + '"]');
       if (m) m.textContent = clp(redondear(base + addMes));
-      if (n) n.textContent = clp(IMPL + addIni);
+      if (n) n.textContent = clp(IMPL[i] + addIni);
     });
-    ['integ', 'camp'].forEach(k => { const o = document.getElementById('ad-' + k); if (o) o.textContent = st[k]; });
+    ['std', 'medida'].forEach(k => { const o = document.getElementById('ad-' + k); if (o) o.textContent = st[k]; });
   }
 
   web.addEventListener('change', () => { st.web = web.checked; render(); });
