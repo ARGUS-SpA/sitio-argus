@@ -718,3 +718,19 @@
 .plan-card.rec>:not(.button){border-bottom-color:var(--band-ln)}
 .plan-card.rec>.pc-list li+li{border-top-color:var(--band-ln)}
 .plan-card .button{display:flex;width:100%;margin:0;justify-content:center;align-self:end;justify-self:stretch;text-align:center}
+/* Precio: "/mes + IVA" en una línea propia, igual en todos los planes */
+.plan-card .plan-price small{display:block;margin:8px 0 0;font-size:14px;color:var(--tx2)}
+.plan-card .plan-price b{white-space:nowrap}
+.plan-card>.pc-promo{text-wrap:balance;font-size:14px;line-height:1.4}
+/* Formas de contratar */
+.contract-block{margin-top:40px;padding:28px;border:1px solid var(--ln2);border-radius:20px;background:var(--s1);color:var(--tx)}
+.contract-block h3{font-family:var(--font-display);font-weight:400;font-size:26px;color:var(--tx);margin:0 0 18px}
+.contract-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.contract-card{border:1px solid var(--ln2);border-radius:14px;background:var(--bg);padding:20px;display:flex;flex-direction:column;gap:6px}
+.contract-card .cc-label{font:500 11px/1.4 var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--tx2)}
+.contract-card b{font-family:var(--font-display);font-weight:400;font-size:34px;line-height:1.1;color:var(--tx)}
+.contract-card p{margin:0;font-size:15px;color:var(--tx2)}
+.contract-note{margin:18px 0 0;font-size:15px;color:var(--tx)}
+.contract-block .small{margin:12px 0 0;color:var(--tx2)}
+@media(max-width:700px){.contract-grid{grid-template-columns:1fr}}
+
