@@ -490,10 +490,10 @@
 
 /* ===== Ronda 2 · Planes ===== */
 .pl-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 32px;flex-wrap:wrap;margin-bottom:36px}
-.pl-head .section-heading,.pl-head .section-heading.stacked{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:0;max-width:640px}
+.pl-head{justify-content:center}.pl-head .section-heading,.pl-head .section-heading.stacked{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;margin:0 auto;max-width:640px}
 .pl-head .section-heading .eyebrow{margin:0 0 14px}
 .pl-head .section-heading h1,.pl-head .section-heading h2{margin:0 0 12px}
-.pl-head .section-heading p{margin:0;max-width:52ch;font-size:17px;color:var(--tx2)}
+.pl-head .section-heading p{margin:0 auto;max-width:52ch;font-size:17px;color:var(--tx2)}
 .pl-promo{display:flex;align-items:center;gap:14px;margin:0;padding:14px 20px;border-radius:16px;background:var(--s1);border:1px solid var(--br)}
 .pl-promo b{font:400 40px/1 var(--font-display);color:var(--br)}
 .pl-promo span{display:flex;flex-direction:column;gap:2px;font-size:14px;color:var(--tx2)}
@@ -687,7 +687,7 @@
 .ad-row b{display:block;font-size:19px;font-weight:500;color:var(--tx)}
 .ad-row small{display:block;color:var(--tx2);font-size:14px;margin-top:4px}
 .ad-check{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:17px;white-space:nowrap;color:var(--tx)}
-.ad-check input{width:22px;height:22px;accent-color:var(--br)}
+.ad-check input{appearance:none;-webkit-appearance:none;width:46px;height:26px;margin:0;border-radius:999px;border:1px solid var(--ln2);background:var(--bg);position:relative;cursor:pointer;transition:background .25s var(--ease,ease),border-color .25s}.ad-check input::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--tx2);transition:transform .25s,background .25s}.ad-check input:checked{background:var(--br);border-color:var(--br)}.ad-check input:checked::after{transform:translateX(20px);background:var(--on-br,#fff)}
 .ad-step{display:flex;align-items:center;gap:14px;flex:none}
 .ad-step button{width:44px;height:44px;border-radius:999px;border:1px solid var(--ln2);background:var(--bg);color:var(--tx);font-size:22px;cursor:pointer}
 .ad-step output{min-width:30px;text-align:center;font-size:20px;color:var(--tx)}
@@ -695,3 +695,5 @@
 .ad-note{margin:14px 0 0;color:var(--tx2);font-size:14px;line-height:1.55;border-top:1px solid var(--ln2);padding-top:14px}
 .pl-extras,.pl-explain{margin-top:36px}
 @media (max-width:600px){.ad-row{flex-direction:column;align-items:flex-start}.ad-panel{padding:18px}}
+/* Planes centrados */
+.plan-cards{margin-inline:auto;width:100%}.plan-card{text-align:center}.plan-card .pc-top{justify-content:center}.plan-card .pc-list li{justify-content:center}.plan-seg{justify-content:center}
