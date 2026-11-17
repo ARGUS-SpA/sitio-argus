@@ -702,3 +702,19 @@
 .plan-card .pc-list li{justify-content:center}
 .plan-card .button{align-self:stretch;margin-inline:0;width:auto}
 
+/* Tarjetas de plan: 7 filas (con oferta), botón centrado y separadores */
+@media(min-width:901px){
+  @supports (grid-template-rows:subgrid){
+    .plan-card,.plan-card.on{grid-row:span 7;row-gap:0}
+  }
+}
+.plan-card{row-gap:0}
+.plan-card>:not(.button){margin:0;padding:16px 0;border-bottom:1px solid var(--ln2)}
+.plan-card>:first-child{padding-top:0}
+.plan-card>.pc-list{border-bottom:1px solid var(--ln2);padding:0;gap:0}
+.plan-card>.pc-list li{justify-content:center;padding:9px 0}
+.plan-card>.pc-list li+li{border-top:1px solid var(--ln2)}
+.plan-card>.pc-promo{border-bottom:0;color:var(--br)}
+.plan-card.rec>:not(.button){border-bottom-color:var(--band-ln)}
+.plan-card.rec>.pc-list li+li{border-top-color:var(--band-ln)}
+.plan-card .button{display:flex;width:100%;margin:0;justify-content:center;align-self:end;justify-self:stretch;text-align:center}
