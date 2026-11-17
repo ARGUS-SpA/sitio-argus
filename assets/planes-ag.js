@@ -21,7 +21,7 @@
     contratos: {
       anual:   { etiqueta: 'anual',    descuento: 0,   mesesDescuento: 0, puestaEnMarchaGratis: true  },
       seis:    { etiqueta: '6 meses',  descuento: 0.3, mesesDescuento: 3, puestaEnMarchaGratis: false },
-      mensual: { etiqueta: 'mensual',  descuento: 0.2, mesesDescuento: 3, puestaEnMarchaGratis: false } // ⚠ CONFIRMAR con negocio
+      mensual: { etiqueta: 'mensual',  descuento: 0,   mesesDescuento: 0, puestaEnMarchaGratis: false }
     }
   };
 
