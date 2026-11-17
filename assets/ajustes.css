@@ -697,3 +697,8 @@
 @media (max-width:600px){.ad-row{flex-direction:column;align-items:flex-start}.ad-panel{padding:18px}}
 /* Planes centrados */
 .plan-cards{margin-inline:auto;width:100%}.plan-card{text-align:center}.plan-card .pc-top{justify-content:center}.plan-card .pc-list li{justify-content:center}.plan-seg{justify-content:center}
+/* Tarjetas de plan: texto y botón centrados */
+.plan-card .pc-list li::before{content:none}
+.plan-card .pc-list li{justify-content:center}
+.plan-card .button{align-self:stretch;margin-inline:0;width:auto}
+

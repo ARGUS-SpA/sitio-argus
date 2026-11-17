@@ -35,6 +35,7 @@ Implementación del agente: pago único en 3 cuotas. Con contrato anual no tiene
 
 ## Formas de contratar y pago (noviembre de 2026)
 
+- Primeros 3 meses: 20% de descuento en la mensualidad (oferta de noviembre de 2026).
 - Contrato anual: sin costo de implementación del agente.
 - Contrato de 6 meses: 30% de descuento en las 3 primeras mensualidades. Si termina antes del mes 6, se cobra la diferencia del descuento.
 - Mensual sin permanencia: sin beneficio.
