@@ -68,20 +68,26 @@
     });
 
     $('[data-out="bestName"]').textContent = aMedida ? 'PLAN A MEDIDA' : best.plan.nombre.toUpperCase();
-    $('[data-out="bestTotal"]').textContent = clp(best.total);
+    $('[data-out="bestTotal"]').textContent = (aMedida ? 'desde ' : '') + clp(best.total);
     $('[data-out="bestDetail"]').textContent = aMedida
-      ? 'Sobre ' + n(CONFIG.maxEstandar) + ' atenciones, te conviene un plan a medida.'
+      ? 'Sobre ' + n(CONFIG.maxEstandar) + ' atenciones al mes, armamos un plan a medida. El valor de referencia es el plan Empresa más ' + clp(CONFIG.excedentePorAtencion) + ' + IVA por cada atención extra.'
       : (best.extra > 0
           ? 'Incluye ' + n(best.extra) + ' atenciones extra a ' + clp(CONFIG.excedentePorAtencion) + ' c/u.'
           : 'Tu volumen cabe completo en el plan.');
     var bestLink = $('[data-out-href="bestAnchor"]');
-    bestLink.setAttribute('href', '#ag-plan-' + best.plan.id);
+    if (aMedida) {
+      bestLink.textContent = 'Conversemos un plan a medida →';
+      if (waNumber) bestLink.setAttribute('href', waHref('Hola, necesito un plan a medida de ATLAS para unas ' + n(state.vol) + ' atenciones al mes.'));
+    } else {
+      bestLink.textContent = 'Ver plan →';
+      bestLink.setAttribute('href', '#ag-plan-' + best.plan.id);
+    }
 
     // Tarjetas
     CONFIG.planes.forEach(function (p) {
       var card = $('[data-plan="' + p.id + '"]');
       if (!card) return;
-      card.classList.toggle('is-featured', p.id === best.plan.id);
+      card.classList.toggle('is-featured', !aMedida && p.id === best.plan.id);
 
       var conDcto = c.descuento > 0;
       $('[data-f="kicker"]', card).textContent = conDcto
