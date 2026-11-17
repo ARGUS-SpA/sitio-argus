@@ -12,6 +12,9 @@ Leer primero README.md y DECISIONES.md. Este archivo es el punto de continuidad 
 | Definir festivos y contacto para incidentes | Operaciones | Orden y procedimientos tienen cobertura y responsables reales |
 | Verificar puesta en servicio sanitaria | Equipo ATLAS | Evidencias y acta por cliente; demo sigue usando datos ficticios |
 | Probar salida de clientes | Equipo ATLAS | Exportación segura, reservas pendientes, revocación y supresión verificadas |
+| Llevar la propuesta de noviembre 2026 a contrato y orden | Socios y revisión contractual | Contrato y orden recogen los cuatro planes, excedente de $500 con cambio de plan, garantía de 30 días, descuento de 6 meses y reajuste IPC |
+| Confirmar tres puntos de la propuesta de noviembre 2026 | Socios | (a) Web con el agente en Inicio: el paquete $490.000 se aplicó como +$190.000 sobre el agente también en Inicio; (b) integración estándar: ATLAS debe tener el conector comprometido; (c) campañas por WhatsApp: fijar precio o mantener "a cotizar" |
+| Ajustar el contador de atenciones a la nueva definición | Desarrollo ATLAS | Se cuenta una nueva atención después de 12 respuestas o a las 24 horas, y el excedente de $500 se calcula con esa medida |
 
 El acceso al repositorio privado `ARGUS-SpA/Plataforma-Digital-Ventas` no estuvo disponible mediante la conexión utilizada para esta auditoría. No se verificaron implementación, contratos de proveedores, exportación, supresión ni SENTINEL. El usuario sí facilitó documentación para revisar su coherencia con la web.
 

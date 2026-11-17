@@ -4,34 +4,45 @@ Fecha de preparación: 21 de octubre de 2026. Fuente: definiciones de los socios
 
 ## Posicionamiento
 
-ARGUS es la empresa; ATLAS es el producto principal. Foco inicial: prestadores y centros de salud de Chile. El ejemplo dental no restringe el producto a odontología. Se usa el calendario y plataforma propios de ATLAS; no se anuncia integración estándar con agendas externas.
+ARGUS es la empresa; ATLAS es el producto principal. Foco inicial: prestadores y centros de salud de Chile. El ejemplo dental no restringe el producto a odontología. Se usa el calendario y plataforma propios de ATLAS. Desde la propuesta de noviembre de 2026 se ofrecen integraciones: estándar, con conectores disponibles (agendas y CRM de uso común), y a medida, tras evaluación.
 
 La creación de sitios web es opcional y se cotiza aparte. Se presenta la evaluación de automatizaciones para pequeñas empresas como una línea complementaria, sin prometer integraciones no confirmadas.
 
 ## Planes vigentes
 
-Valores en CLP más IVA:
+Fuente: propuesta de precios de noviembre de 2026 (vista cliente). Valores netos en CLP, más IVA. Reemplazan a los planes Esencial, Profesional y Empresa de octubre de 2026.
 
-| Plan | Mensualidad | Respuestas del agente al mes | Implementación |
-| --- | ---: | ---: | ---: |
-| Esencial | $159.000 | 2.000 | $300.000 |
-| Profesional | $429.000 | 7.000 | $650.000 |
-| Empresa | $1.090.000 | 19.000 | Desde $1.200.000 |
+| Plan | Mensualidad | Atenciones al mes | Horas de ajuste al mes | Pago inicial del agente |
+| --- | ---: | ---: | ---: | ---: |
+| Inicio | $149.000 | 300 | 1 | $150.000 |
+| Emprendimiento | $279.000 | 800 | 2 | $300.000 |
+| Pyme (recomendado) | $499.000 | 1.600 | 4 | $300.000 |
+| Empresa | $899.000 | 3.200 | 6 | $300.000 |
 
-Una respuesta emitida por el agente equivale a una interacción. No se confunde con una cita, conversación completa o mensaje que cobra Meta. WhatsApp está incluido dentro del tramo. Los mensajes entrantes, respuestas del personal y recordatorios se distinguen del contador de respuestas del agente. La medición del sistema operativo debe contrastarse con esta definición antes de facturar.
+Unidad comercial: la atención. Un cliente atendido dentro de 24 horas, con hasta 12 respuestas del agente. Pasadas las 12 respuestas se cuenta una nueva atención. Si el mismo cliente vuelve otro día, es otra atención. WhatsApp está incluido en los cuatro planes.
 
-Si supera el tramo: aviso y revisión de ampliación conforme a contrato. No se inventó una tarifa por excedente ni una suspensión automática. Falta formalizar umbrales y detalles de autorización en cada orden.
+Una respuesta del agente no es la unidad de cobro: el contador de respuestas sirve para medir la atención. Los mensajes entrantes, respuestas del personal y recordatorios se distinguen de ese contador. La medición del sistema operativo debe contrastarse con esta definición antes de facturar.
 
-## Pago y promoción
+Excedente: cada atención sobre el plan cuesta $500 + IVA y el agente sigue atendiendo. El cambio al plan siguiente se hace solo cuando le sale más barato que pagar el excedente. La calculadora aplica esa regla. Falta formalizar en cada orden los umbrales y la autorización.
 
-- Implementación: 50% al contratar y 50% contra entrega.
-- Primera mensualidad: después de la entrega.
-- Cierres hasta el 31 de octubre de 2026: descuento de 50% en implementación y primera mensualidad.
-- Segunda mensualidad en adelante: precio ordinario.
-- La fecha de cierre determina elegibilidad aunque la entrega ocurra después de octubre.
-- Web y otros adicionales: fuera de la promoción publicada.
+Adicionales (se suman a la mensualidad y al pago inicial):
+- Sitio web y dominio: +$19.900/mes; pago inicial +$190.000 sobre el agente, $490.000 en total con el agente.
+- Integración estándar: +$25.000/mes; pago inicial +$250.000.
+- Integración a medida: desde +$50.000/mes; pago inicial desde +$600.000. Se cotiza tras evaluación.
+- Campañas por WhatsApp: a cotizar según la base de clientes.
 
-El bloque promocional se oculta después del 31 de octubre según la fecha de America/Santiago. Revisar y archivar la oferta al vencer; no renovar la fecha automáticamente. Esta ocultación no modifica contratos ya cerrados.
+Implementación del agente: pago único en 3 cuotas. Con contrato anual no tiene costo.
+
+## Formas de contratar y pago (noviembre de 2026)
+
+- Contrato anual: sin costo de implementación del agente.
+- Contrato de 6 meses: 30% de descuento en las 3 primeras mensualidades. Si termina antes del mes 6, se cobra la diferencia del descuento.
+- Mensual sin permanencia: sin beneficio.
+- Los beneficios no se suman entre sí.
+- Garantía de 30 días: si el agente no queda operando a conformidad, se devuelve el pago de la implementación.
+- Reajuste por IPC una vez al año. Las plantillas de WhatsApp las cobra Meta directamente en la cuenta del cliente.
+
+Los contratos anteriores de octubre de 2026 (50% de descuento por cierre hasta el 31 de octubre) no se alteran. El bloque promocional de la web se oculta después del 31 de octubre según la fecha de America/Santiago. Revisar y archivar la oferta al vencer; no renovar la fecha automáticamente.
 
 ## Atención y soporte
 
@@ -56,4 +67,4 @@ Las propuestas de actualización del contrato y orden de servicio que resuelven 
 
 ## Precios como valores desde (30 de octubre de 2026)
 
-Por definición de los socios, todos los precios publicados (mensualidades e implementación) se presentan como valores "desde". El precio final se define en la propuesta según la implementación y los requisitos de cada centro. Los tramos de respuestas y las condiciones de consumo no cambian.
+Regla de octubre de 2026: todos los precios publicados se presentaban como valores "desde". La propuesta de noviembre de 2026 publica las mensualidades sin "desde" (son valores fijos según plan y adicionales) y mantiene "desde" solo en la integración a medida. La implementación se muestra como pago inicial del agente. El precio final se confirma en la propuesta según la configuración.
